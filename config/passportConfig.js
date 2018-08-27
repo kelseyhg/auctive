@@ -21,11 +21,11 @@ passport.deserializeUser(function(id, callback){
 
 // actually log in a user
 passport.use(new passportLocalStrategy({
-	usernameField: 'email',
+	usernameField: 'userName',
 	passwordField: 'password',
-}, function(email, password, callback){
+}, function(userName, password, callback){
 	db.user.findOne({
-		where: {email: email}
+		where: {userName: userName }
 	}).then(function(foundUser){
 		if(!foundUser || !foundUser.isValidPassword(password)){
 			callback(null, null)

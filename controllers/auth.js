@@ -9,6 +9,9 @@ var db = require('../models');
 // declare a new router
 var router = express.Router();
 
+
+router.use(express.static(__dirname + '/public/'));
+
 // define routes
 router.get('/login', function(req, res){
 	res.render('auth/login');
@@ -25,9 +28,13 @@ router.get('/signup', function(req, res){
 	res.render('auth/signup');
 });
 
+router.get('/newuser', function(req, res){
+	res.render('auth/newuser');
+});
+
 router.post('/signup', function(req, res){
 	console.log(req.body);
-	req.body.admin = false;
+	req.body.admin = true;
 	db.user.findOrCreate({
 		where: { email: req.body.email },
 		defaults: req.body
@@ -38,6 +45,31 @@ router.post('/signup', function(req, res){
 				successFlash: 'successfully logged in!',
 				failureRedirect: '/',
 				failureFlash: 'signup failed...'
+			})(req, res);
+		} else {
+			
+			res.redirect('/auth/login');
+		}
+	}).catch(function(err){
+		req.flash('error', err.message);
+		res.redirect('/auth/signup');
+	});
+	
+});
+
+router.post('/newuser', function(req, res){
+	console.log(req.body);
+	req.body.admin = false;
+	db.user.findOrCreate({
+		where: { userName: req.body.userName },
+		defaults: req.body
+	}).spread(function(user, wasCreated){
+		if(wasCreated) {
+			passport.authenticate('local', {
+				successRedirect: '/profile',
+				successFlash: 'new user added',
+				failureRedirect: '/',
+				failureFlash: 'new user failed'
 			})(req, res);
 		} else {
 			

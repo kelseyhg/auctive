@@ -1,0 +1,31 @@
+
+<br> <br>
+<h2>Add User to <%=currentUser.orgName%>'s Account</h2>
+
+<form action='/auth/newuser' method="POST">
+	<div>
+		<div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='orgName'>Organization Name</label>
+				<input type='text' placeholder="<%=currentUser.orgName%>" disabled class="form-control" id='orgName' name='orgName'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='userName'>User ID</label>
+				<input type='text' class="form-control" id='userName' name='UserName'>
+			</div>
+		</div>
+		<div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='password'>Password</label>
+				<input type='password' class="form-control" id='password' name='password' class='validate'>
+			</div>
+		</div>
+			<div class="form-check">
+	 			 <input class="form-check-input" type="checkbox" value="admin" id="admin">
+	 			 <label class="form-check-label" for="admin">
+	    			Set as Admin
+	  			</label>
+			</div><br>
+		   <button type="submit" class="btn btn-lg btn-warning" disabled>Add User</button>
+	</div>
+</form>

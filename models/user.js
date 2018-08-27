@@ -3,13 +3,13 @@ var bcrypt = require('bcrypt');
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var user = sequelize.define('user', {
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
+    orgName: DataTypes.STRING,
+    userName: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       validate: {
         isEmail: {
-          msg: "please. enter. a valid. email."
+          msg: "please enter a valid email."
         }
       }
     },
@@ -17,21 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
           len: {
-            args: [8,16],
-            msg: "password must be 8-16 characters"
+            args: [6,16],
+            msg: "password must be 6-16 characters"
           }
       }
     },
-    dob: DataTypes.DATE,
     admin: DataTypes.BOOLEAN,
-    image: {
-      type:DataTypes.STRING,
-      validate: {
-        isUrl: {
-          msg: "not a valid url"
-        }
-      }
-     }
     }, {
     hooks: {
       beforeCreate: function(pendingUser) {
@@ -43,14 +34,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   user.associate = function(models) {
-    // associations can be defined here
+   models.user.hasMany(models.event);
   };
 
   user.prototype.isValidPassword = function(typedPassword){
     return bcrypt.compareSync(typedPassword, this.password);
   }
-
-  console.log("DOES THIS EVEN WORK")
 
   return user;
 };

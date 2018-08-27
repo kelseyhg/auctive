@@ -1,14 +1,33 @@
-  <nav>
-    <div class="nav-wrapper teal darken-4">
-      <a href="/" class="brand-logo right">BOIL</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <% if(currentUser) {%>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/auth/logout">Log out</a></li>
-        <% } %>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/signup">Sign up</a></li>
-      </ul>
-    </div>
-  </nav>
 
+<nav class="navbar navbar-dark" style="background-color: #10afb2;">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="navbar-brand" href="/">Auctive</a>
+  </li>
+     <% if(currentUser) {%>
+  <li class="nav-item">
+    <a class="nav-link" href="/profile"><%=currentUser.orgName%></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link"><%=currentUser.userName%></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/event">Events</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/auth/logout">Log out</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="/profile/newuser" disabled>Add user</a>
+  </li>
+  <%} else {%>
+   <li class="nav-item">
+    <a class="nav-link" href="/auth/login">Log In</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" href="/auth/signup">Create Account</a>
+  </li>
+  <%}%>
+</ul>
+</nav>

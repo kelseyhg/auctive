@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "auth-boilerplate",
+    "database": "auctive",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": "false"

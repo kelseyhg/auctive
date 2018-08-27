@@ -1,7 +1,7 @@
 {
-  "name": "auth-boilerplate",
+  "name": "Auctive auction management",
   "version": "1.0.0",
-  "description": "boilerplate for future use",
+  "description": "live auction management app",
   "repository": "https://github.com/kelseyhg/auth-boilerplate",
   "main": "index.js",
   "scripts": {

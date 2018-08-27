@@ -1,34 +1,30 @@
-<h2>sign up</h2>
+
+<br> <br>
+<h2>Create New Account</h2>
 
 <form action='/auth/signup' method="POST">
-	<div class='row'>
-		<div class='inpt field col s6'>
-			<label for='firstname'>First Name</label>
-			<input type='text' id='firstname' name='firstname'>
+	<div>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='orgName'>Organization Name</label>
+				<input type='text' class="form-control" id='orgName' name='orgName'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='userName'>Admin ID</label>
+				<input type='text' class="form-control" id='userName' name='UserName'>
+			</div>
 		</div>
-		<div class='inpt field col s6'>
-			<label for='lastname'>Last Name</label>
-			<input type='text' id='lastname' name='lastname'>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='email'>Email</label>
+				<input type='email' class="form-control" id='email' name='email' class='validate'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='password'>Password</label>
+				<input type='password' class="form-control" id='password' name='password' class='validate'>
+			</div>
 		</div>
-		<div class='inpt field col s12'>
-			<label for='email'>Email</label>
-			<input type='email' id='email' name='email' class='validate'>
-		</div>
-		<div class='inpt field col s6'>
-			<label for='password'>Password</label>
-			<input type='password' id='password' name='password' class='validate'>
-		</div>
-		
-		<div class='inpt field col s12'>
-			<label for='image'>Profile Picture</label>
-			<input type='url' id='image' name='image' placeholder='paste pic url here'>
-		</div>
-		<div class='inpt field col s12'>
-			<label for='dob'>Birthday</label>
-			<input type='date' id='dob' name='dob'>
-		</div>
-		  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right"></i>
-  </button>
+		   <button type="submit" class="btn btn-lg btn-warning">Create Account</button>
 	</div>
 </form>
+

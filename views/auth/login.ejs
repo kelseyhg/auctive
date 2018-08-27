@@ -1,17 +1,20 @@
-<h2>log-in</h2>
+<br><br>
 
-<form action='/auth/login' method="POST">
-	<div class='row'>
-		<div class='inpt field col s6'>
-			<label for='email'>Email</label>
-			<input type='email' id='email' name='email' class='validate'>
+<h2>Log In</h2>
+
+<form action='/auth/login' method='POST'>
+	<div>
+		
+		<div class='inpt field col-md-6 form-group'>
+			<label for='userName'>User ID</label>
+			<input type='text' class='form-control' id='userName' name='userName' class='validate'>
 		</div>
-		<div class='inpt field col s6'>
+		<div class='inpt field col-md-6 form-group'>
 			<label for='password'>Password</label>
-			<input type='password' id='password' name='password' class='validate'>
+			<input type='password' class='form-control' id='password' name='password' class='validate'>
 		</div>
-		  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right"></i>
-  </button>
+	
+		 <button type='submit' class='btn btn-lg btn-warning'>Log In</button>
 	</div>
 </form>
+
