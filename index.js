@@ -36,6 +36,8 @@ app.use(function(req, res, next){
 app.use('/auth', require('./controllers/auth'));
 app.use('/profile', require('./controllers/profiles'));
 app.use('/event', require('./controllers/events'));
+app.use('/item', require('./controllers/items'));
+app.use('/donor', require('./controllers/donors'));
 
 // define routes
 app.get('/', function(req, res) {

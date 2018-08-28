@@ -1,16 +1,12 @@
 
 <br>
 
-<h1><%= event.name%> page</h1>
+<h2><%= event.name%> page</h2>
 
- <button type="submit" class="btn btn-lg btn-warning">Add Item</button>
+<a class="btn btn-lg btn-warning" name='event.id' href="/item/<%=event.id%>" role="button">Items</a>
 
- <button type="submit" class="btn btn-lg btn-warning">View Item List</button>
+<a class="btn btn-lg btn-warning" name='event.id' href="/donor/<%=event.id%>" role="button">Donors</a>
 
- <button type="submit" class="btn btn-lg btn-warning">Add Attendee</button>
+<a class="btn btn-lg btn-warning" name='event.id' href="/attendee/<%=event.id%>" role="button">Attendees</a>
 
- <button type="submit" class="btn btn-lg btn-warning">View Attendee List</button>
 
-  <button type="submit" class="btn btn-lg btn-warning">Add Donor</button>
-
- <button type="submit" class="btn btn-lg btn-warning">View Donor List</button>

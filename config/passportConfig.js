@@ -25,12 +25,14 @@ passport.use(new passportLocalStrategy({
 	passwordField: 'password',
 }, function(userName, password, callback){
 	db.user.findOne({
-		where: {userName: userName }
+		where: {'userName': userName }
 	}).then(function(foundUser){
 		if(!foundUser || !foundUser.isValidPassword(password)){
+			console.log("FOUNDUSER", foundUser);
 			callback(null, null)
 		}
 		else {
+			console.log("FOUNDUSER", foundUser);
 			callback(null, foundUser);
 		}
 	}).catch(function(err){

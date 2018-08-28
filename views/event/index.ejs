@@ -2,7 +2,7 @@
 
 <%events.forEach(function(e){%>
 	<h3>
-		<a href='/event/<%=e.name%>'>
+		<a name='<%e.id%>'href='/event/<%=e.name%>'>
 		<%=e.name%>
 		</a>
 	 </h3>

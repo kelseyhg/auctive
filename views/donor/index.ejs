@@ -1,0 +1,57 @@
+<h2>list of donors, new donor form</h2>
+
+<h4>new donor</h4>
+
+<form action='/donor' method="POST">
+	<div>
+			<input name='eventId' value='<%=event.id%>'>
+	<div>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='name'>Donor Name</label>
+				<input type='text' class="form-control" id='name' name='name' required>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='contactName'> Contact Name</label>
+				<input type='text' class="form-control" id='contactName' name='contactName'>
+			</div>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='email'>Email</label>
+				<input type='email' class="form-control" id='email' name='email'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='phone'>Phone Number</label>
+				<input type='text' class="form-control" id='phone' name='phone'>
+			</div>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-12 form-group'>
+				<label for='notes'>Notes</label>
+				<textarea class="form-control" id='notes' name='notes'></textarea>
+			</div>
+		</div>
+	
+		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Donor</button>
+	</div>
+</form>
+
+
+<br> <br>
+<h4>donor list</h4>
+
+<% event.donors.forEach(function(d){%>
+  <div>
+    <hr>
+    <h4>
+    	<%=d.number%>
+    </h4>
+    <h4>
+      <a href="#">
+        <%= d.description %>
+      </a>
+    </h4>
+    <a href='#' class='btn btn-warning'>edit</a>
+  </div>
+<%});%>
