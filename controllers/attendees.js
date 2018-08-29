@@ -20,6 +20,15 @@ router.get('/:id', loggedIn, function(req, res){
 	});	
 });
 
+router.get('/edit/:id', loggedIn, function(req, res){
+		db.attendee.findOne({
+			where: {id: req.params.id},
+		})
+		.then(function(foundAttendee){	
+		res.render('attendee/edit', {attendee: foundAttendee});
+		});
+	});
+
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
@@ -51,5 +60,33 @@ router.post('/', function(req, res){
 		res.redirect('/');
 	}); 
 });
+
+
+
+router.put('/:id', function(req, res, next){
+
+		console.log("!!!!!!!!!!", req.body);
+		db.attendee.update(
+		{
+			name: req.body.name,
+   			nameSecondary: req.body.nameSecondary,
+   			phone: req.body.phone,
+   			email: req.body.email,
+   			ticket: req.body.ticket,
+   			table: req.body.table
+   		}, 
+		{returning: true, where: {id: req.body.id} }
+		
+ )
+ .then(function(updatedAttendee){
+		req.flash('success');
+    	res.redirect('/event');
+	}).catch(function(err){
+		req.flash('error', err.message);
+		res.redirect('/');
+	}); 
+});
+
+
 
 module.exports = router;

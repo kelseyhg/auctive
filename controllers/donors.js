@@ -24,6 +24,18 @@ router.get('/:id', loggedIn, function(req, res){
 });
 
 
+router.get('/edit/:id', loggedIn, function(req, res){
+		db.donor.findOne({
+			where: {id: req.params.id},
+		})
+		.then(function(foundDonor){	
+		res.render('donor/edit', {donor: foundDonor});
+		});
+	});
+
+
+
+
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
@@ -46,6 +58,30 @@ router.post('/', function(req, res){
 		});
 	})
 	.then(function(createdDonor){
+		req.flash('success');
+    	res.redirect('/event');
+	}).catch(function(err){
+		req.flash('error', err.message);
+		res.redirect('/');
+	}); 
+});
+
+
+router.put('/:id', function(req, res, next){
+
+		console.log("!!!!!!!!!!", req.body);
+		db.donor.update(
+		{
+			name: req.body.name,
+   			contactName: req.body.contactName,
+   			phone: req.body.phone,
+   			email: req.body.email,
+   			notes: req.body.notes
+   		}, 
+		{returning: true, where: {id: req.body.id} }
+		
+ )
+ .then(function(updatedDonor){
 		req.flash('success');
     	res.redirect('/event');
 	}).catch(function(err){

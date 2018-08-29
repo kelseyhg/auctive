@@ -1,0 +1,53 @@
+<h2>attendee edit page reached</h2>
+
+
+<form action='/attendee/<%=attendee.id%>' class='edit-call'>
+	<div>
+		<div class='form-row'>
+			<div class='inpt field col-md-2 form-group'>
+				<label for='number'>Bid Number</label>
+				<input type='text' class="form-control" id='number' name='number' value='<%=attendee.bidNumber%>'>
+			</div>
+			<input type='text' id='id' name='id' value='<%=attendee.id%>' hidden>
+		</div>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='name'>Name</label>
+				<input type='text' class="form-control" id='name' name='name' value='<%=attendee.name%>'>
+			</div>
+				<div class='inpt field col-md-6 form-group'>
+				<label for='nameSecondary'>Second Name</label>
+				<input type='text' class="form-control" id='nameSecondary' name='nameSecondary' value='<%=attendee.nameSecondary%>'>
+			</div>
+		</div>
+		<div class='form row'>	
+			<div class='inpt field col-md-6 form-group'>
+				<label for='phone'>Phone</label>
+				<input type='text' class="form-control" id='phone' name='phone' value='<%=attendee.phone%>'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='email'>Email</label>
+				<input type='text' class="form-control" id='email' name='email' value='<%=attendee.email%>'>
+			</div>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='ticket'>Ticket status</label>
+				<select name='ticket' class='form-control'>
+				<option value='outstanding'> Outstanding </option>
+				<option value='paid'> Paid </option>	
+				<option value='guest'> Guest </option>
+				</select>
+			</div>
+			
+			<div class='inpt field col-md-3 form-group'>
+				<label for='table'>Table #</label>
+				<input type='text' class="form-control" id='table' name='table' value='<%=attendee.table%>'>
+			</div>
+		</div>
+			 <button type="submit" class="shadow-sm btn btn-lg btn-warning">Update Attendee</button>
+
+		</div>
+	
+</form>

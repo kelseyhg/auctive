@@ -35,6 +35,16 @@ router.post('/', function(req, res, next){
     });
 });
 
+router.get('/edit/:id', loggedIn, function(req, res){
+	db.donor.findAll().then(function(allDonors){
+		db.item.findOne({
+			where: {id: req.params.id},
+		})
+		.then(function(foundItem){	
+		res.render('item/edit', {donors: allDonors, item: foundItem});
+		});
+	});
+});
 	
 
 
