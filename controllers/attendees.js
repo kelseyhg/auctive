@@ -61,8 +61,6 @@ router.post('/', function(req, res){
 	}); 
 });
 
-
-
 router.put('/:id', function(req, res, next){
 
 		console.log("!!!!!!!!!!", req.body);

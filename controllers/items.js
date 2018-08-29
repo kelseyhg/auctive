@@ -46,6 +46,28 @@ router.get('/edit/:id', loggedIn, function(req, res){
 	});
 });
 	
+router.put('/:id', function(req, res, next){
 
+		console.log("!!!!!!!!!!", req.body);
+		db.item.update(
+		{
+			name: req.body.name,
+   			type: req.body.type,
+   			description: req.body.description,
+   			marketPrice: req.body.marketPrice,
+   			soldPrice: req.body.soldPrice,
+   			attendeeId: req.body.attendeeId
+   		}, 
+		{returning: true, where: {id: req.body.id} }
+		
+ )
+ .then(function(updatedAttendee){
+		req.flash('success');
+    	res.redirect('/event');
+	}).catch(function(err){
+		req.flash('error', err.message);
+		res.redirect('/');
+	}); 
+});
 
 module.exports = router;

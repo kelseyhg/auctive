@@ -1,10 +1,11 @@
 <h2>item edit page reached</h2>
 
 
-<form action='/item' method="POST">
+<form action='/item/<%=item.id%>' class='edit-call'>
 	<div>
 		<div hidden="true">
 			<input name='eventId' value='<%=item.eventId%>'>
+			<input name='id' id='id' value='<%=item.id%>'>
 		</div>
 		<div class='form-row'>
 			<div class='inpt field col-md-3 form-group'>
