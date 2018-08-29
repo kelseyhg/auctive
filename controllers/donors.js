@@ -27,10 +27,18 @@ router.get('/:id', loggedIn, function(req, res){
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
-	db.donor.create(req.body)
+	db.donor.findOrCreate({
+		where: {
+			name: req.body.name,
+			contactName: req.body.contactName,
+			email: req.body.email,
+			phone: req.body.phone,
+			notes: req.body.notes
+		}
+	})
 	.spread(function(donor, created){
-		db.event.findOrCreate ({
-			where: {eventId: req.body.eventId}
+		db.event.findOrCreate({
+			where: {id: req.body.eventId}
 		}).spread(function(event, found){
 			donor.addEvent(event).then(function(event){
 				console.log(event, "added to", donor);
@@ -38,16 +46,12 @@ router.post('/', function(req, res){
 		});
 	})
 	.then(function(createdDonor){
-			passport.authenticate('local', {
-			successRedirect: '/event',
-			successFlash: 'new donor added',
-			failureRedirect: '/event',
-			failureFlash: 'new donor failed'
-		})(req, res);
+		req.flash('success');
+    	res.redirect('/event');
 	}).catch(function(err){
 		req.flash('error', err.message);
 		res.redirect('/');
-	});
+	}); 
 });
 
 

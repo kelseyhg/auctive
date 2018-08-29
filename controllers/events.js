@@ -31,17 +31,7 @@ router.post('/', function(req, res){
 		defaults: req.body
 
 	}).spread(function(event, wasCreated){
-		if(wasCreated) {
-			passport.authenticate('local', {
-				successRedirect: '/event/' + wasCreated.id,
-				successFlash: 'new event added',
-				failureRedirect: '/profile/',
-				failureFlash: 'new event failed'
-			})(req, res);
-		} else {
-			
-			res.redirect('event');
-		}
+		res.redirect('/event');
 	}).catch(function(err){
 		req.flash('error', err.message);
 		res.redirect('/event/');

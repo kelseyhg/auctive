@@ -1,26 +1,77 @@
-<h2>list/add attendees</h2>
 
-Add attendee
+<br>
+<h2>list/add attendees</h2>
 
 
 <form action='/attendee' method="POST">
 	<div>
 		<div class='form-row'>
-			<div class='inpt field col-md-3 form-group'>
+			<div class='inpt field col-md-2 form-group'>
 				<label for='number'>Bid Number</label>
 				<input type='text' class="form-control" id='number' name='number'>
 			</div>
+			<div class='inpt field col-md-2 form-group'>
+			<input name='eventId' value='<%=event.id%>' hidden>
+		</div>
+		</div>
+		<div class='form-row'>
 			<div class='inpt field col-md-6 form-group'>
 				<label for='name'>Name</label>
 				<input type='text' class="form-control" id='name' name='name'>
 			</div>
-			<div class='inpt field col-md-3 form-group'>
-				<label for='type'>Type</label>
-				<select name='type' class='form-control'>
-				<option value='certificate'> Certificate </option>
-				<option value='item'> Item </option>	
-				</select>
+				<div class='inpt field col-md-6 form-group'>
+				<label for='nameSecondary'>Second Name</label>
+				<input type='text' class="form-control" id='nameSecondary' name='nameSecondary'>
 			</div>
 		</div>
-	</div>
+		<div class='form row'>	
+			<div class='inpt field col-md-6 form-group'>
+				<label for='phone'>Phone</label>
+				<input type='text' class="form-control" id='phone' name='phone'>
+			</div>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='email'>Email</label>
+				<input type='text' class="form-control" id='email' name='email'>
+			</div>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='ticket'>Ticket status</label>
+				<select name='ticket' class='form-control'>
+				<option value='outstanding'> Outstanding </option>
+				<option value='paid'> Paid </option>	
+				<option value='guest'> Guest </option>
+				</select>
+			</div>
+			
+			<div class='inpt field col-md-3 form-group'>
+				<label for='table'>Table #</label>
+				<input type='text' class="form-control" id='table' name='table'>
+			</div>
+		</div>
+			 <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Attendee</button>
+
+		</div>
+	
 </form>
+
+<br> <br>
+<h4>attendee list</h4>
+
+<% event.attendees.forEach(function(a){%>
+  <div>
+    <hr>
+   
+    <h4>
+      <a href="#">
+        <%= a.bidNumber %>: <%= a.name %>
+      </a>
+    </h4>
+    <h4>
+      <a href="#">
+       <%=a.nameSecondary%>
+      </a>
+    </h4>
+    <a href='#' class='btn btn-warning'>edit</a>
+  </div>
+<%});%>

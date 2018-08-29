@@ -22,34 +22,13 @@ router.get('/:id', loggedIn, function(req, res){
 	});
 });
 
-/*router.post('/', function(req, res){
-	req.body.active = true;
-	console.log(req.body);
-	db.item.create(req.body)
-	.then(function(createdItem){
-			passport.authenticate('local', {
-			successRedirect: '/event',
-			successFlash: 'new item added',
-			failureRedirect: '/event',
-			failureFlash: 'new item failed'
-		})(req, res);
-	}).catch(function(err){
-		req.flash('error', err.message);
-		res.redirect('/');
-	});
-});*/
-
 router.post('/', function(req, res, next){
     req.body.active = true;
     console.log(req.body);
     db.item.create(req.body)
     .then(function(createdItem){
-            passport.authenticate('local', {
-            	successRedirect: '/event',
-            	successFlash: 'new item added',
-            	failureRedirect: '/event',
-            	failureFlash: 'new item failed'
-        })(req, res, next);
+    	req.flash('success', 'wheee');
+    	res.redirect('/event');
     }).catch(function(err){
         req.flash('error', err.message);
         res.redirect('/');

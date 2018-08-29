@@ -59,7 +59,7 @@
 	</div>
 </form>
 
-<form action='/item' method="POST" id="donorForm">
+<form action='/donor' method="POST" id="donorForm">
 	<div>
 		<div class='form-row'>
 			<div class='inpt field col-md-6 form-group'>
@@ -83,8 +83,8 @@
 		</div>
 		<div class='form-row'>
 			<div class='inpt field col-md-12 form-group'>
-				<label for='description'>Notes</label>
-				<textarea class="form-control" id='description' name='description'></textarea>
+				<label for='notes'>Notes</label>
+				<textarea class="form-control" id='notes' name='notes'></textarea>
 			</div>
 		</div>
 	
@@ -99,7 +99,7 @@
   <div>
     <hr>
     <h4>
-    	<%=i.number%>
+    	<%=i.number%>: <%=i.name%>
     </h4>
     <h4>
       <a href="#">

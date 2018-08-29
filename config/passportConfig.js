@@ -36,6 +36,7 @@ passport.use(new passportLocalStrategy({
 			callback(null, foundUser);
 		}
 	}).catch(function(err){
+		console.log('ERROR OH NO', err);
 		callback(err, null);
 	})
 }));

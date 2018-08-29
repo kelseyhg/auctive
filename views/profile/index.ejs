@@ -1,6 +1,6 @@
 <br> 
 
-<h2><%=currentUser.orgName%></h2>
+<h2><%=currentUser.orgName%> Events</h2>
 
 
 	<div class = 'flex-container'>
@@ -21,4 +21,9 @@
 			</form>
 		</div>
 			
-
+<%events.forEach(function(e){%>
+	<div class='events'>
+		<h3><%=e.name%></h3>
+		<a href='/event/<%=e.name%>' class='btn btn-lg btn-warning'>Open</a>
+	</div>
+	<%});%>

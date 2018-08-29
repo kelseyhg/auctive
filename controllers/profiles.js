@@ -10,7 +10,17 @@ var loggedIn = require('../middleware/loggedIn');
 
 // define routes
 router.get('/', loggedIn, function(req, res){
-	res.render('profile/index');
+	db.user.findOne({
+		where: {id: req.params.id},
+		include: [db.event]
+	})
+	.then(function(foundUser){
+	db.event.findAll().then(function(allEvents){
+	res.render('profile/index', {events: allEvents});
+		
+	});
+		
+	});
 });
 
 
