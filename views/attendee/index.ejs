@@ -76,3 +76,10 @@
     <a href='edit/<%=a.id%>' class='btn btn-warning'>edit</a>
   </div>
 <%});%>
+
+<br><br>
+<footer> 
+	<a href='/item/<%=event.id%>' class='btn btn-warning'>items</a>
+	<a href='/attendee/<%=event.id%>' class='btn btn-warning' disabled>attendees</a>
+	<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
+</footer>

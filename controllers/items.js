@@ -61,12 +61,12 @@ router.put('/:id', function(req, res, next){
 		{returning: true, where: {id: req.body.id} }
 		
  )
- .then(function(updatedAttendee){
-		req.flash('success');
-    	res.redirect('/event');
+ .then(function(updatedItem){
+		req.flash('success', 'item updated');
+    	res.send('cool');
 	}).catch(function(err){
 		req.flash('error', err.message);
-		res.redirect('/');
+		res.send('nope');
 	}); 
 });
 

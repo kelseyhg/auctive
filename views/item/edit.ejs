@@ -17,11 +17,8 @@
 				<input type='text' class="form-control" id='name' name='name' value='<%=item.name%>'>
 			</div>
 			<div class='inpt field col-md-3 form-group'>
-				<label for='type'>Type</label>
-				<select name='type' class='form-control'>
-				<option value='item'> Item </option>	
-				<option value='certificate'> Certificate </option>
-				</select>
+				<label for='type'>Type</label>	
+				<input type='text' class='form-control' id='type' name='type' value='<%=item.type%>'> 
 			</div>
 		</div>
 		<div class='form-row'>
@@ -46,3 +43,10 @@
 		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Edit Item</button>
 	</div>
 </form>
+
+<br><br>
+<footer> 
+	<a href='/item/<%=item.eventId%>' class='btn btn-warning'>items</a>
+	<a href='/attendee/<%=item.eventId%>' class='btn btn-warning'>attendees</a>
+	<a href='/sell/receipt/<%=item.eventId%>' class='btn btn-warning'>checkout</a>
+</footer>
