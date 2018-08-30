@@ -35,7 +35,8 @@ router.put('/:id', function(req, res, next){
 		db.item.update(
 			{ 
 				soldPrice: req.body.soldPrice,
-				attendeeId: attendee.id 
+				attendeeId: attendee.id
+
 			}, 
 			{ where: {number: req.body.itemNumber} } 
 		).then(function(updatedItem){
@@ -51,6 +52,22 @@ router.put('/:id', function(req, res, next){
 		res.send('Oh no!', err);
 	});
 	
+});
+
+router.put('/show/:id', function(req,res, next){
+	console.log("!!!!!!!!!!", req.body);
+	db.attendee.update(
+	{
+		paid: req.body.paid
+	},
+	{ where: {id: req.body.id} }
+	).then(function(updatedItem){
+			req.flash('success', 'success yay fun');
+			res.send('yay');
+		}).catch(function(err){
+			req.flash('error', err.message);
+			res.send('Oh no!', err);
+		});
 });
 
 router.get('/receipt/:id', loggedIn, function(req, res){
