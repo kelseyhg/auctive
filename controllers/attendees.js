@@ -40,7 +40,8 @@ router.post('/', function(req, res){
 			email: req.body.email,
 			phone: req.body.phone,
 			ticketStatus: req.body.ticket,
-			table: req.body.table
+			table: req.body.table,
+			paid: false
 		}
 	})
 	.spread(function(attendee, created){
@@ -54,7 +55,7 @@ router.post('/', function(req, res){
 	})
 	.then(function(createdAttendee){
 		req.flash('success');
-    	res.redirect('/event');
+    	res.redirect('/attendee/' + req.body.eventId);
 	}).catch(function(err){
 		req.flash('error', err.message);
 		res.redirect('/');

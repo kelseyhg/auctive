@@ -3,6 +3,7 @@ var express = require('express');
 var db = require('../models');
 var passport = require('../config/passportConfig');
 
+
 // declare a new router
 var router = express.Router();
 

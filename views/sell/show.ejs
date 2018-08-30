@@ -1,12 +1,45 @@
+
+
+
 <br>
-<h4><%=attendee.name%> </h4>
+<div class="receipt">
+	<div class="image-container" align="right">
+		<img class="logo" src="https://res.cloudinary.com/kelseygreen/image/upload/v1535649775/WSCO-logo.gif" alt="logo" height="125">
+	</div>
+	<h4><%=attendee.name%> </h4>
 
-<%var total = 0;%>
-<%item.forEach(function(i){%>
-	<% if (i.attendeeId === attendee.id){%>
-	<p><%= i.name %>: <%= i.soldPrice%></p>
-		<%total += i.soldPrice;%>
-<%}%>
-<%});%>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Item</th>
+	      <th scope="col"></th>
+	      <th scope="col">Cost</th>
+	    </tr>
+	  </thead>
 
-total cost: <%=total%>
+	<%var total = 0;%>
+	<%item.forEach(function(i){%>
+		<% if (i.attendeeId === attendee.id){%>
+	  <tbody>
+	    <tr>
+	      <th scope="row"><%=i.number%></th>
+	      <td><%=i.name%></td>
+	      <td></td>
+	      <td><%=i.soldPrice%></td>
+	    </tr>
+	    <%total += i.soldPrice%>
+	<%}%>
+	<%});%>
+
+	<tr>
+	   <th scope="row"></th>
+	   <td></td>
+	   <td>Total</td>
+	   <td><%=total%></td>
+	</tr>
+
+	  </tbody>
+	</table>
+
+</div>

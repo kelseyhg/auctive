@@ -59,7 +59,7 @@ router.post('/', function(req, res){
 	})
 	.then(function(createdDonor){
 		req.flash('success');
-    	res.redirect('/event');
+    	res.redirect('/donor/' + req.body.eventId);
 	}).catch(function(err){
 		req.flash('error', err.message);
 		res.redirect('/');

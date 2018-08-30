@@ -28,7 +28,7 @@ router.post('/', function(req, res, next){
     db.item.create(req.body)
     .then(function(createdItem){
     	req.flash('success', 'wheee');
-    	res.redirect('/event');
+    	res.redirect('/item/' + req.body.eventId);
     }).catch(function(err){
         req.flash('error', err.message);
         res.redirect('/');
