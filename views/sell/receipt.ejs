@@ -1,0 +1,18 @@
+<h2>check out bidder</h2>
+
+
+<br> <br>
+<h4>attendee list</h4>
+
+<% event.attendees.forEach(function(a){%>
+  <div>
+    <hr>
+   
+    <h4>
+      <a href='/sell/show/<%=a.id%>'>
+       <%=a.bidNumber%>: <%= a.name %>
+      </a>
+    </h4>
+    <a href='/sell/show/<%=a.id%>' class='btn btn-warning'>check out</a>
+  </div>
+<%});%>

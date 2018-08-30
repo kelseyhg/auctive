@@ -1,24 +1,19 @@
-$(document).ready(function() {
- console.log('Hello from ajax.js!');
-});
-
 $(".edit-call").submit(function(e){
-		e.preventDefault();  //don't submit/send form
+	e.preventDefault();  //don't submit/send form
 	console.log(this);
-		var url = $(this).attr("action");
-		var data = $(this).serialize();
-		console.log("url:", url);
-		console.log("data:", data);
+	var data = $(this).serialize();
+	var url = $(this).attr('action');
 
-		$.ajax({
-			method: "PUT",
-			url: url,
-			data: data
-
+	$.ajax({
+		method: "PUT",
+		url: url,
+		data: data
 	}).done(function(data){
-		 window.location = "event";
+		// console.log('success');
+		 window.location = url;
 	}).fail(function(err){
 		console.log("Error", err);
-		});  //end of ajax put
+	});  //end of ajax put
 
 });
+

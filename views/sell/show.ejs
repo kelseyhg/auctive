@@ -1,0 +1,12 @@
+<br>
+<h4><%=attendee.name%> </h4>
+
+<%var total = 0;%>
+<%item.forEach(function(i){%>
+	<% if (i.attendeeId === attendee.id){%>
+	<p><%= i.name %>: <%= i.soldPrice%></p>
+		<%total += i.soldPrice;%>
+<%}%>
+<%});%>
+
+total cost: <%=total%>

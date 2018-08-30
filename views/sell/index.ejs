@@ -1,0 +1,26 @@
+<h2>sell page for <%=event.name%></h2>
+<br>
+<form action='/sell/<%=event.id%>' class='edit-call'>
+	<div>
+		<div hidden="true">
+			<input name='id' value='<%=event.id%>'>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='bidNumber'>Bidder Number</label>
+				<input type='text' class="form-control" id='bidNumber' name='bidNumber'>
+			</div>
+			<h4>BOUGHT</h4>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='itemNumber'>Item Number</label>
+				<input type='text' class="form-control" id='itemNumber' name='itemNumber'>
+			</div>
+			<h4>FOR</h4>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='soldPrice'>Price</label>
+				<input type='text' class="form-control" id='soldPrice' name='soldPrice'>
+			</div>
+		</div>
+		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Set Winner</button>
+	</div>
+</form>
