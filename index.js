@@ -64,7 +64,6 @@ app.get('/', function(req, res) {
 	  	console.log('ERR 1', err);
 	  	res.send(err);
 	  }
-	  console.log('hiiiii')
 	  // Authorize a client with credentials, then call the Google Sheets API.
 	  // authorize(JSON.parse(content), getThings);
 	  // // res.render('home');
@@ -76,6 +75,21 @@ app.get('/', function(req, res) {
 	  	getThings(auth, function(fetchedRows){
 	  		console.log('fetchedRows', fetchedRows);
 	  		res.render('home', { fetchedRows: fetchedRows || [] });
+	  	});
+	  });
+	});
+});
+
+app.get('/testwrite', function(req, res){
+	fs.readFile('credentials.json', (err, content) => {
+	  if (err) {
+	  	console.log('ERR 2', err);
+	  	res.send(err);
+	  }
+
+	  authorize(JSON.parse(content), function(auth){
+	  	runSample(auth, function(msg){
+  			res.send(msg);
 	  	});
 	  });
 	});
@@ -173,32 +187,31 @@ function getThings(auth, callback) {
     }
   });
 }
-  let range = "SHEET1";
-  let valueInputOption = "RAW";
-  let values = [
-  [
-    10, 1011, "itemName", "item", "itemDescription", 3
-  ],
 
-];
-/*
-let resource = {
-  values,
-};
-this.sheetsService.spreadsheets.values.append({
-  spreadsheetId,
-  range,
-  valueInputOption,
-  resource,
-}, (err, result) => {
-  if (err) {
-    console.log(err);
-    console.log(err);
-  } else {
-    console.log(`${result.updates.updatedCells} cells appended.`);
-  }
-});  
-*/
+function runSample (auth, callback) {
+  const sheets = google.sheets({version: 'v4', auth});
+  var request = {
+    spreadsheetId: SPREADSHEETID,  
+    range: 'Sheet1',
+    valueInputOption: 'USER_ENTERED',  
+    insertDataOption: 'INSERT_ROWS',  
+    resource: {
+      values: [
+      	[1, 1030, 'gift card', 'card', 'hi', 3, 155, 32, 46, 81],
+      	[2, 1031, 'gift certificate', 'certificate', 'world', 3, 155, 32, 46, 81]
+  	  ]
+    },
+    auth: auth,
+  };
+
+  sheets.spreadsheets.values.append(request, function(err, response) {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback('SUCCESS');
+  });
+}
 
 // END GOOGLE SHEETS STUFF
 
