@@ -58,8 +58,13 @@ app.use('/sell', require('./controllers/sales'));
 
 // define routes
 app.get('/', function(req, res) {
+	console.log('got to home route');
 	fs.readFile('credentials.json', (err, content) => {
-	  if (err) return res.send(err);
+	  if (err) return {
+	  	console.log('ERR 1', err);
+	  	res.send(err);
+	  }
+	  console.log('hiiiii ')
 	  // Authorize a client with credentials, then call the Google Sheets API.
 	  // authorize(JSON.parse(content), getThings);
 	  // // res.render('home');
