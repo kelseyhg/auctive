@@ -98,7 +98,7 @@
 <% event.items.forEach(function(i){%>
   <div>
     <hr>
-    <h3></h3>
+ 
     <h4>
     	<a href='edit/<%=i.id%>'>
     	<%=i.number%>: <%=i.name%>
@@ -107,7 +107,15 @@
     <p>
         <%= i.description %>
     </p>
-    <a name='<%=i.id%>' href='edit/<%=i.id%>' class='btn btn-warning'>edit</a>
+    <a name='<%=i.id%>' href='edit/<%=i.id%>' class='btn btn-warning edit-call'>edit</a>
+
+    <form action='/item/<%=event.id%>' class='delete-call'>
+    	<div class="form-class">
+    	<input name='kitten' id='kitten' value='<%=i.id%>'hidden>
+    	  <button type="submit" class="shadow-sm btn btn-danger">delete</button>
+    	</div>
+    </form>
+
   </div>
 <%});%>
 

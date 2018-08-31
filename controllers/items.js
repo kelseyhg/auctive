@@ -3,6 +3,7 @@ var express = require('express');
 var db = require('../models');
 var passport = require('../config/passportConfig');
 
+
 // declare a new router
 var router = express.Router();
 
@@ -58,8 +59,7 @@ router.put('/:id', function(req, res, next){
    			soldPrice: req.body.soldPrice,
    			attendeeId: req.body.attendeeId
    		}, 
-		{returning: true, where: {id: req.body.id} }
-		
+		{returning: true, where: {id: req.body.id} }		
  )
  .then(function(updatedItem){
 		req.flash('success', 'item updated');
@@ -69,5 +69,20 @@ router.put('/:id', function(req, res, next){
 		res.send('nope');
 	}); 
 });
+
+
+
+router.delete("/:id", loggedIn, function(req, res){
+console.log("!!!!!!!!!!", req.body.kitten);
+	db.item.destroy({
+		where: {id: req.body.kitten}
+	}).then(function(justDestroyed){
+		res.send("successfully deleted");
+	}).catch(function(error){
+		res.send("yikes");
+	});
+});
+
+
 
 module.exports = router;

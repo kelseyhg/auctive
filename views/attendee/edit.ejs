@@ -3,6 +3,7 @@
 
 <form action='/attendee/<%=attendee.id%>' class='edit-call'>
 	<div>
+		<input type='text' class="form-control" id='eventId' name='eventId' value='<%=attendee.eventId%>' >
 		<div class='form-row'>
 			<div class='inpt field col-md-2 form-group'>
 				<label for='number'>Bid Number</label>
@@ -52,10 +53,9 @@
 	
 </form>
 
-
-
-<footer> 
-	<a href='item/<%=event.id%>' class='btn btn-warning'>items</a>
-	<a href='attendee/<%=event.id%>' class='btn btn-warning' disabled>attendees</a>
-	<a href='sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
+<br><br>
+<footer class='container'> 
+	<a href='/item/<%=eventId%>' class='btn btn-warning'>items</a>
+	<a href='/attendee/<%=eventId%>' class='btn btn-warning' disabled>attendees</a>
+	<a href='/sell/receipt/<%=eventId%>' class='btn btn-warning'>checkout</a>
 </footer>
