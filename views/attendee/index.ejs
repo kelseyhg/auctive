@@ -2,7 +2,9 @@
 <br>
 <h2>list/add attendees</h2>
 
+<button onclick="showForm()">Attendee Form</button>
 
+<div id="hiddenForm">
 <form action='/attendee' method="POST">
 	<div>
 	
@@ -55,6 +57,7 @@
 		</div>
 	
 </form>
+</div>
 
 <br> <br>
 <h4>attendee list</h4>
@@ -74,6 +77,7 @@
       </a>
     </h4>
     <a href='edit/<%=a.id%>' class='btn btn-warning'>edit</a>
+    
   </div>
 <%});%>
 

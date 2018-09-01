@@ -51,6 +51,13 @@
       </a>
     </h4>
     <a href='edit/<%=d.id%>' class='btn btn-warning'>edit</a>
+
+    <form action='/donor/<%=event.id%>' class='delete-call'>
+    	<div class="form-class">
+    	<input name='kitten' id='kitten' value='<%=d.id%>'hidden>
+    	  <button type="submit" class="shadow-sm btn btn-danger">delete</button>
+    	</div>
+    </form>
   </div>
 <%});%>
 

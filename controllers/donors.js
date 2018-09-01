@@ -2,6 +2,7 @@
 var express = require('express');
 var db = require('../models');
 var passport = require('../config/passportConfig');
+var async = require('async');
 
 // declare a new router
 var router = express.Router();
@@ -32,8 +33,6 @@ router.get('/edit/:id', loggedIn, function(req, res){
 		res.render('donor/edit', {donor: foundDonor});
 		});
 	});
-
-
 
 
 router.post('/', function(req, res){
@@ -89,6 +88,42 @@ router.put('/:id', function(req, res, next){
 		res.redirect('/');
 	}); 
 });
+
+
+router.delete("/:id", loggedIn, function(req, res){
+console.log(">>>>>>>", req.body.kitten);
+	db.donor.findOne({
+		where: {id: req.body.kitten},
+		include: [db.event]
+	}).then(function(foundDonor){
+		console.log(foundDonor.name);
+		async.forEach(foundDonor.events, function(a, done){
+			foundDonor.removeEvent(a).then(function(){done();})
+		}, function(){
+			console.log("GOT HERE");
+			db.donor.destroy({
+				where: {id: req.body.kitten}
+			}).then(function(){
+				res.send("delete may have worked")
+			}).catch(function(err){
+				res.status(500).send("not working....")
+			});
+			});
+	
+		});
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
