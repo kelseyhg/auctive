@@ -45,6 +45,8 @@ router.get("/:name", loggedIn, function(req, res) {
 	db.event.findOne({
 		where: {name: req.params.name},
 	}).then(function(foundEvent){
+		currentEvent = foundEvent.id;
+		console.log('>>>>>>>', currentEvent);
 		res.render("event/show", {event: foundEvent});
 	}).catch(function(err){
     console.log(err);

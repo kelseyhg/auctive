@@ -17,6 +17,7 @@ var TOKEN_PATH = 'token.json';
 const SPREADSHEETID = "1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo";
 global.eventItems = [];
 global.eventAttendees = []; 
+global.currentEvent = ''; 
 
 // This will run on server start.
 // fs.readFile('credentials.json', (err, content) => {
