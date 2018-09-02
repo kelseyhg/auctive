@@ -1,6 +1,8 @@
 <br>
 <h3><%=event.name%> Items Report</h3>
 
+<% var eventItems = []; %>
+
 	<table class="table">
 	  <thead>
 	    <tr>
@@ -13,29 +15,44 @@
 	  </thead>
 
 <%item.forEach(function(i){%>
+	<%var row = []%>
 
 	  <tbody>
 	    <tr>
 	      <th scope="row"><%=i.number%></th>
+	      	<%row.push(i.number)%>
 	      <td><%=i.name%></td>
+	      	<%row.push(i.name)%>
 	      <%if(i.attendeeId === null){%>
 	      	<td>none</td> <%} else %>
 	      <%attendee.forEach(function(a){%>
 	      	<% if(a.id === i.attendeeId) {%>
 	      
 	      	<td><%=a.bidNumber%></td>
+	      		<%row.push(a.bidNumber)%>
 
 	     	<%}%>
 	  	<%})%>
 	      <td><%=i.marketPrice%></td>
+	      	<%row.push(i.marketPrice)%>
 	      <td><%=i.soldPrice%></td>
+	      	<%row.push(i.soldPrice)%>
 	    </tr>
+	    	<%eventItems.push(row)%>
 	<%});%>
 
 	  </tbody>
 	</table>
 
+<%console.log(eventItems)%>
 
 
+
+<form action='/send'>
+	<div>
+		<input name='values' id='values' value='<%=eventItems%>'>
+	</div>
+	<button type="submit" class="shadow-sm btn btn-lg btn-warning">send report</button>
+</form>
 
 

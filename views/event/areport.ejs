@@ -9,7 +9,8 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Name</th>
 	      <th scope="col"></th>
-	      <th scope="col">Total Paid</th>
+	      <th scope="col">Total</th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 
@@ -27,12 +28,21 @@
 	      <th scope="row"><%=a.bidNumber%></th>
 	      <td><%=a.name%></td>
 	      <td><%=a.nameSecondary%></td>
-	
 	      <td><%=total%></td>
-
+	    <%if (a.paid) {%>
+	      <td>paid</td>
+	    <%} else {%>
+	      <td>unpaid</td>
+	      <%}%>
 	    </tr>
 	<%});%>
 
 	  </tbody>
 	</table>
 
+<form action='/event/areport/send'>
+	<div>
+			<input name='values' value='' hidden>
+		</div>
+	<button type="submit" class="shadow-sm btn btn-lg btn-warning">send report</button>
+</form>

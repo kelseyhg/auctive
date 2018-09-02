@@ -95,7 +95,27 @@ app.get('/testwrite', function(req, res){
 	});
 });
 
-// GOOGLE SHEETS STUFF /////
+
+// GOOGLE SHEETS //
+
+app.get('/send', function(req, res){
+   req.body.active = true;
+  console.log("values", req.params.values);
+  fs.readFile('credentials.json', (err, content) => {
+    if (err) {
+      console.log('ERR 2', err);
+      res.send(err);
+    }
+
+    authorize(JSON.parse(content), function(auth){
+      addItems(auth, req.params.values, function(msg){
+        res.send('sent');
+      });
+    });
+  });
+});
+
+
 function authorize(credentials, callback) {
   const {client_secret, client_id, redirect_uris} = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
@@ -192,7 +212,7 @@ function runSample (auth, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
     spreadsheetId: SPREADSHEETID,  
-    range: 'Sheet1',
+    range: 'Sheet3',
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'INSERT_ROWS',  
     resource: {
@@ -213,6 +233,28 @@ function runSample (auth, callback) {
   });
 }
 
+
+function addItems (auth, values, callback) {
+  const sheets = google.sheets({version: 'v4', auth});
+  var request = {
+    spreadsheetId: SPREADSHEETID,  
+    range: 'Items!A2:F50',
+    valueInputOption: 'USER_ENTERED',  
+    insertDataOption: 'INSERT_ROWS',  
+    resource: {
+      values: values
+    },
+    auth: auth,
+  };
+
+  sheets.spreadsheets.values.append(request, function(err, response) {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback('SUCCESS');
+  });
+}
 // END GOOGLE SHEETS STUFF
 
 

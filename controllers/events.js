@@ -68,9 +68,6 @@ router.get('/areport/:id', loggedIn, function(req, res){
 });
 
 
-
-
-
 router.get('/ireport/:id', loggedIn, function(req, res){
 	db.attendee.findAll().then(function(allAttendees){
 		db.event.findOne({
@@ -85,5 +82,28 @@ router.get('/ireport/:id', loggedIn, function(req, res){
 	}); 
 	});
 });
+
+// GOOGLE SHEETS
+
+//WRITE ITEM REPORT TO SHEET "ITEMS"
+/*
+router.get('/send', function(req, res){
+	 req.body.active = true;
+	console.log("values", req.body.values);
+  fs.readFile('credentials.json', (err, content) => {
+    if (err) {
+      console.log('ERR 2', err);
+      res.send(err);
+    }
+
+    authorize(JSON.parse(content), function(auth){
+      addItems(auth, req.body.values, function(msg){
+        res.send('sent');
+      });
+    });
+  });
+});  */
+
+// END GOOGLE SHEETS
 
 module.exports = router;
