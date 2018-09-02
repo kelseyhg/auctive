@@ -2,6 +2,7 @@
 <br>
 <h3><%=event.name%> Attendee Report</h3>
 
+<% eventAttendeess = []; %>
 
 	<table class="table">
 	  <thead>
@@ -23,26 +24,32 @@
 	<%}%>
 	<%});%>
 
+	<%var row = []%>
 	  <tbody>
 	    <tr>
 	      <th scope="row"><%=a.bidNumber%></th>
+	      	<%row.push(a.bidNumber)%>
 	      <td><%=a.name%></td>
+	      	<%row.push(a.name)%>
 	      <td><%=a.nameSecondary%></td>
+	      	<%row.push(a.nameSecondary)%>
 	      <td><%=total%></td>
+	      	<%row.push(total)%>
 	    <%if (a.paid) {%>
 	      <td>paid</td>
+	      	<%row.push('paid')%>
 	    <%} else {%>
 	      <td>unpaid</td>
+	      	<%row.push('unpaid')%>
 	      <%}%>
 	    </tr>
+	    <%eventAttendees.push(row)%>
 	<%});%>
 
 	  </tbody>
 	</table>
 
-<form action='/event/areport/send'>
-	<div>
-			<input name='values' value='' hidden>
-		</div>
-	<button type="submit" class="shadow-sm btn btn-lg btn-warning">send report</button>
-</form>
+	<%console.log(eventAttendees)%>
+
+<a href='/write' class='btn btn-large btn-warning'>send report</a>
+

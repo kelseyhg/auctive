@@ -15,7 +15,8 @@ var fs = require('fs');
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 var TOKEN_PATH = 'token.json';
 const SPREADSHEETID = "1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo";
-global.eventItems = []; 
+global.eventItems = [];
+global.eventAttendees = []; 
 
 // This will run on server start.
 // fs.readFile('credentials.json', (err, content) => {
@@ -108,6 +109,22 @@ app.get('/send', function(req, res){
 
     authorize(JSON.parse(content), function(auth){
       addItems(auth, eventItems, function(msg){
+        res.send(msg);
+      });
+    });
+  });
+});
+
+app.get('/write', function(req, res){
+  console.log("reaching the right get");
+  fs.readFile('credentials.json', (err, content) => {
+    if (err) {
+      console.log('ERR 2', err);
+      res.send(err);
+    }
+
+    authorize(JSON.parse(content), function(auth){
+      addAttendees(auth, eventAttendees, function(msg){
         res.send(msg);
       });
     });
@@ -238,6 +255,28 @@ function addItems (auth, values, callback) {
   var request = {
     spreadsheetId: SPREADSHEETID,  
     range: 'Items!A2:F50',
+    valueInputOption: 'USER_ENTERED',  
+    insertDataOption: 'OVERWRITE',  
+    resource: {
+      values: values
+    },
+    auth: auth,
+  };
+
+  sheets.spreadsheets.values.append(request, function(err, response) {
+  if (err) {
+      return callback(err);
+    }
+
+    return callback('SUCCESS');
+  });
+}
+
+  function addAttendees (auth, values, callback) {
+  const sheets = google.sheets({version: 'v4', auth});
+  var request = {
+    spreadsheetId: SPREADSHEETID,  
+    range: 'Attendees!A2:F50',
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'OVERWRITE',  
     resource: {
