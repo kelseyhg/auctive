@@ -1,1 +1,41 @@
-<h3>Items Report Page</h3>
+<br>
+<h3><%=event.name%> Items Report</h3>
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Name</th>
+	      <th scope="col">Bidder</th>
+	      <th scope="col">Market value</th>
+	      <th scope="col">Sold for</th>
+	    </tr>
+	  </thead>
+
+<%item.forEach(function(i){%>
+
+	  <tbody>
+	    <tr>
+	      <th scope="row"><%=i.number%></th>
+	      <td><%=i.name%></td>
+	      <%if(i.attendeeId === null){%>
+	      	<td>none</td> <%} else %>
+	      <%attendee.forEach(function(a){%>
+	      	<% if(a.id === i.attendeeId) {%>
+	      
+	      	<td><%=a.bidNumber%></td>
+
+	     	<%}%>
+	  	<%})%>
+	      <td><%=i.marketPrice%></td>
+	      <td><%=i.soldPrice%></td>
+	    </tr>
+	<%});%>
+
+	  </tbody>
+	</table>
+
+
+
+
+

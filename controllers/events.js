@@ -52,12 +52,27 @@ router.get("/:name", loggedIn, function(req, res) {
    
 });
 
-router.get('/ireport/:id', loggedIn, function(req, res){
-	res.render('event/ireport');
-});
-
 router.get('/areport/:id', loggedIn, function(req, res){
 	res.render('event/areport');
+});
+
+
+
+
+router.get('/ireport/:id', loggedIn, function(req, res){
+	console.log(req.params.id);
+	db.attendee.findAll().then(function(allAttendees){
+		db.event.findOne({
+		where: {id: req.params.id},
+		include: [db.item]	
+	}).then(function(foundEvent){
+		db.item.findAll({
+			where: { eventId: req.params.id },
+			}).then(function(allItems){
+		res.render('event/ireport', {attendee: allAttendees, event: foundEvent, item: allItems});	
+		});
+	}); 
+	});
 });
 
 module.exports = router;

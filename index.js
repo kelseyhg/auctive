@@ -169,7 +169,7 @@ function getThings(auth, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   sheets.spreadsheets.values.get({
     spreadsheetId: SPREADSHEETID,
-    range: 'Sheet1!A1:C2',
+    range: 'Items!A2:H15',
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
     const rows = res.data.values;
