@@ -41,6 +41,7 @@ router.post('/', function(req, res){
 
 
 router.get("/:name", loggedIn, function(req, res) {
+	console.log("999999", req.params.name);
 	db.event.findOne({
 		where: {name: req.params.name},
 	}).then(function(foundEvent){

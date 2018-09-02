@@ -15,6 +15,7 @@ var fs = require('fs');
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 var TOKEN_PATH = 'token.json';
 const SPREADSHEETID = "1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo";
+global.eventItems = []; 
 
 // This will run on server start.
 // fs.readFile('credentials.json', (err, content) => {
@@ -99,8 +100,6 @@ app.get('/testwrite', function(req, res){
 // GOOGLE SHEETS //
 
 app.get('/send', function(req, res){
-   req.body.active = true;
-  console.log("values", req.params.values);
   fs.readFile('credentials.json', (err, content) => {
     if (err) {
       console.log('ERR 2', err);
@@ -108,8 +107,8 @@ app.get('/send', function(req, res){
     }
 
     authorize(JSON.parse(content), function(auth){
-      addItems(auth, req.params.values, function(msg){
-        res.send('sent');
+      addItems(auth, eventItems, function(msg){
+        res.send(msg);
       });
     });
   });
@@ -240,7 +239,7 @@ function addItems (auth, values, callback) {
     spreadsheetId: SPREADSHEETID,  
     range: 'Items!A2:F50',
     valueInputOption: 'USER_ENTERED',  
-    insertDataOption: 'INSERT_ROWS',  
+    insertDataOption: 'OVERWRITE',  
     resource: {
       values: values
     },
