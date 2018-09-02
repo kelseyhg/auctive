@@ -1,1 +1,38 @@
-<h3>Attendee Report Page</h3>
+
+<br>
+<h3><%=event.name%> Attendee Report</h3>
+
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Name</th>
+	      <th scope="col"></th>
+	      <th scope="col">Total Paid</th>
+	    </tr>
+	  </thead>
+
+<%attendee.forEach(function(a){%>
+
+	<%var total = 0;%>
+	<%item.forEach(function(i){%>
+		<% if (i.attendeeId === a.id){%>
+	    <%total += i.soldPrice%>
+	<%}%>
+	<%});%>
+
+	  <tbody>
+	    <tr>
+	      <th scope="row"><%=a.bidNumber%></th>
+	      <td><%=a.name%></td>
+	      <td><%=a.nameSecondary%></td>
+	
+	      <td><%=total%></td>
+
+	    </tr>
+	<%});%>
+
+	  </tbody>
+	</table>
+
