@@ -21,13 +21,15 @@ router.get('/:id', loggedIn, function(req, res){
 });
 
 router.get('/edit/:id', loggedIn, function(req, res){
-		db.attendee.findOne({
-			where: {id: req.params.id},
-		})
-		.then(function(foundAttendee){	
-		res.render('attendee/edit', {attendee: foundAttendee, eventId: req.params.id});
-		});
+
+	console.log("oooooooo", req.params.name)
+	db.attendee.findOne({
+		where: {id: req.params.id},
+	})
+	.then(function(foundAttendee){	
+		res.render('attendee/edit', {attendee: foundAttendee, eventId: req.params.name});
 	});
+});
 
 router.post('/', function(req, res){
 	req.body.active = true;
@@ -78,11 +80,11 @@ router.put('/:id', function(req, res, next){
 		
  )
  .then(function(updatedAttendee){
-		req.flash('success');
-    	res.redirect('/event');
+		req.flash('success', 'item updated');
+    	res.send('cool');
 	}).catch(function(err){
 		req.flash('error', err.message);
-		res.redirect('/');
+		res.send('nope');
 	}); 
 });
 

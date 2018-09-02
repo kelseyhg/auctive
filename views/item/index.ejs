@@ -1,9 +1,10 @@
-<h2>list of items, new item form</h2>
 
-<h4>Event ID:<%= event.id %></h4>
+<br>
+<h4><%= event.name %> Items List</h4>
 
-<h4>new item</h4>
+<button class="shadow-sm btn btn-lg btn-warning" onclick="showForm()">New Item Form</button>
 
+<div id="hiddenForm">
 <form action='/item' method="POST">
 	<div>
 		<div hidden="true">
@@ -45,9 +46,9 @@
 					<%})%>
 					<% } %>
 				</select>
-				<div id="newDonor" class="shadow-sm btn btn-lg btn-warning" onclick="">New Donor</div>
 		</div>
 	</div>
+				<a href='/donor/<%=event.id%>' class='col-md-2 form-control btn btn-warning'>New Donor</a> <br>
 	
 		<div class='form-row'>
 			<div class='inpt field col-md-3 form-group'>
@@ -58,7 +59,9 @@
 		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Item</button>
 	</div>
 </form>
+</div>
 
+<div hidden>
 <form action='/donor' method="POST" id="donorForm">
 	<div>
 		<div class='form-row'>
@@ -91,6 +94,7 @@
 		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Donor</button>
 	</div>
 </form>
+</div>
 
 <br> <br>
 <h4>item list</h4>

@@ -10,17 +10,14 @@ var loggedIn = require('../middleware/loggedIn');
 
 // define routes
 router.get('/', loggedIn, function(req, res){
-	db.user.findOne({
-		where: {id: req.params.id},
-		include: [db.event]
+	db.event.findAll({
+		where: { userId: req.user.id },
 	})
-	.then(function(foundUser){
-	db.event.findAll().then(function(allEvents){
-	res.render('profile/index', {events: allEvents});
+	.then(function(foundEvents){
+	res.render('profile/index', {events: foundEvents});
 		
 	});
 		
-	});
 });
 
 

@@ -11,8 +11,6 @@ var router = express.Router();
 var loggedIn = require('../middleware/loggedIn');
 
 
-
-
 router.get('/:id', loggedIn, function(req, res){
 	db.event.findOne({
 		where: {id: req.params.id},
@@ -91,7 +89,6 @@ router.put('/:id', function(req, res, next){
 
 
 router.delete("/:id", loggedIn, function(req, res){
-console.log(">>>>>>>", req.body.kitten);
 	db.donor.findOne({
 		where: {id: req.body.kitten},
 		include: [db.event]
@@ -100,7 +97,6 @@ console.log(">>>>>>>", req.body.kitten);
 		async.forEach(foundDonor.events, function(a, done){
 			foundDonor.removeEvent(a).then(function(){done();})
 		}, function(){
-			console.log("GOT HERE");
 			db.donor.destroy({
 				where: {id: req.body.kitten}
 			}).then(function(){

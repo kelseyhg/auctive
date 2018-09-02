@@ -58,6 +58,8 @@ router.put('/show/:id', function(req,res, next){
 	console.log("!!!!!!!!!!", req.body);
 	db.attendee.update(
 	{
+		cardPayment: req.body.card,
+		cashPayment: req.body.cash,
 		paid: req.body.paid
 	},
 	{ where: {id: req.body.id} }

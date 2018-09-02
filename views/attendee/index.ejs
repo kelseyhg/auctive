@@ -1,8 +1,8 @@
 
 <br>
-<h2>list/add attendees</h2>
 
-<button onclick="showForm()">Attendee Form</button>
+
+<button class='btn-warning btn-lg' onclick="showForm()">New Attendee Form</button>
 
 <div id="hiddenForm">
 <form action='/attendee' method="POST">
@@ -67,16 +67,12 @@
     <hr>
    
     <h4>
-      <a id='<%=event.id%>' href='edit/<%=a.id%>'>
         <%= a.bidNumber %>: <%= a.name %>
-      </a>
     </h4>
     <h4>
-      <a id='<%=event.id%>' href='edit/<%=a.id%>'>
        <%=a.nameSecondary%>
-      </a>
     </h4>
-    <a href='edit/<%=a.id%>' class='btn btn-warning'>edit</a>
+    <a name ='<%=event.id%>' href='edit/<%=a.id%>' class='btn btn-warning'>edit</a>
     
   </div>
 <%});%>

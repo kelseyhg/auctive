@@ -1,5 +1,5 @@
 <h2>attendee edit page reached</h2>
-
+<%#selectStatus(attendee.ticketStatus)%>
 
 <form action='/attendee/<%=attendee.id%>' class='edit-call'>
 	<div>
@@ -35,7 +35,7 @@
 		<div class='form-row'>
 			<div class='inpt field col-md-3 form-group'>
 				<label for='ticket'>Ticket status</label>
-				<select name='ticket' class='form-control'>
+				<select id ='ticket' name='ticket' class='form-control'>
 				<option value='outstanding'> Outstanding </option>
 				<option value='paid'> Paid </option>	
 				<option value='guest'> Guest </option>

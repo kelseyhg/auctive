@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     table: DataTypes.INTEGER,
     phone: DataTypes.STRING,
     email: DataTypes.STRING,
-    paid: DataTypes.BOOLEAN
+    paid: DataTypes.BOOLEAN,
+    cardPayment: DataTypes.INTEGER,
+    cashPayment: DataTypes.NUMERIC
   }, {});
   attendee.associate = function(models) {
     models.attendee.belongsToMany(models.event, {through: "eventsAttendees"});

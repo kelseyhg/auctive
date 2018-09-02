@@ -52,5 +52,12 @@ router.get("/:name", loggedIn, function(req, res) {
    
 });
 
+router.get('/ireport/:id', loggedIn, function(req, res){
+	res.render('event/ireport');
+});
+
+router.get('/areport/:id', loggedIn, function(req, res){
+	res.render('event/areport');
+});
 
 module.exports = router;

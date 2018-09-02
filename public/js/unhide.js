@@ -6,3 +6,8 @@ function showForm() {
         x.style.display = "none";
     }
 }
+
+function selectStatus(status) {
+	 var element = document.getElementById("ticket");
+    element.value = status;
+}
