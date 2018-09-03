@@ -20,7 +20,7 @@ router.get('/', loggedIn, function(req, res){
 		
 });
 
-
+// nonfunctional routes for adding a new sub-account
 router.get('/newuser', function(req, res){
 	res.render('profile/newuser');
 });

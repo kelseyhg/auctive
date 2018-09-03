@@ -1,6 +1,6 @@
-# Auth Boilerplate: How to Use
+# Auctive
 
-This is a basic node/express app with ability to add users and log them in securely with user authentication. It can be applied to any project that needs user authentication and secure sessions. Take the generic boilerplate and customize it for new projects. 
+This app helps manage live auctions by storing attendee, item donor, and item information, allowing the user to mark items as sold, generating receipts for successful bidders, and exporting event information to Google Sheets.
 
 ## What it includes:
 
@@ -27,7 +27,7 @@ This is a basic node/express app with ability to add users and log them in secur
 
 > NOTE: change these fields in model and migration files BEFORE running sequelize db:migrate
 
-### Defualt Routes Supplied
+### Routes
 
 | Method | Path | Location | Purpose |
 | ------- | ----------------------- | ------------- | ------------------------------------- |
@@ -37,6 +37,29 @@ This is a basic node/express app with ability to add users and log them in secur
 | POST | /auth/login | controllers/auth.js | Log-in submission + profile redirect |
 | GET | /auth/signup | controllers/auth.js | Sign-up form page |
 | POST | /auth/signup | controllers/auth.js | Sign-up submission + redirect to profile |
+| GET | event | controllers/events.js | List of events for current user |
+| GET | event/:name | controllers/events.js | Single event main page |
+| POST | event | controllers/events.js | Create new event |
+| GET | attendee/:id | controllers/attendees.js | Attendees add/list for an event |
+| GET | attendee/edit/:id | controllers/attendees.js | Edit page for an attendee |
+| POST | attendee/:id | controllers/attendees.js | Create new attendee record |
+| PUT | attendee/:id | controllers/attendees.js | Edit attendee record |
+| GET | item/:id | controllers/items.js | Items add/list for an event |
+| GET | item/edit/:id | controllers/items.js | Edit page for an item |
+| POST | item/:id | controllers/items.js | Create new item record|
+| PUT | item/:id | controllers/items.js | Edit item record |
+| DELETE | item/:id | controllers/items.js | Delete item record |
+| GET | donor/:id | controllers/donors.js | Donors add/list for an event |
+| GET | donor/edit/:id | controllers/donors.js | Edit page for a donor|
+| POST | donor/:id | controllers/donors.js | Create new donor record |
+| PUT | donor/:id | controllers/donors.js | Edit donor record |
+| GET | sell/:id | controllers/sales.js | Winning bid and bidder form for an item |
+| PUT | sell/:id | controllers/sales.js | Record winning bid and bidder for an item |
+| GET | sell/receipt/:id | controllers/sales.js | List of attendees with links to checkout |
+| GET | sell/show/:id | controllers/sales.js | Receipt for bidder and form to record payment |
+| PUT | sell/show/:id | controllers/sales.js | Submit form to record payment |
+| GET | event/areport/:id | events/auth.js | Show attendee summary for an event |
+| GET | event/ireport/:id | events/auth.js | Show item summary for an event |
 | GET | auth/logout | controllers/auth.js | Logout + redirect to home |
 
 ## Steps for Use

@@ -10,7 +10,7 @@ var router = express.Router();
 // get login authorization helper
 var loggedIn = require('../middleware/loggedIn');
 
-
+// show donors associated with event with given id
 router.get('/:id', loggedIn, function(req, res){
 	db.event.findOne({
 		where: {id: req.params.id},
@@ -22,7 +22,7 @@ router.get('/:id', loggedIn, function(req, res){
 	});	
 });
 
-
+// edit page dor a given donor
 router.get('/edit/:id', loggedIn, function(req, res){
 		db.donor.findOne({
 			where: {id: req.params.id},
@@ -32,7 +32,7 @@ router.get('/edit/:id', loggedIn, function(req, res){
 		});
 	});
 
-
+// add new donor
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
@@ -63,7 +63,7 @@ router.post('/', function(req, res){
 	}); 
 });
 
-
+// edit donor info
 router.put('/:id', function(req, res, next){
 
 		console.log("!!!!!!!!!!", req.body);
@@ -79,7 +79,6 @@ router.put('/:id', function(req, res, next){
 		
  )
  .then(function(updatedDonor){
-		req.flash('success');
     	res.redirect('/event');
 	}).catch(function(err){
 		req.flash('error', err.message);
@@ -87,7 +86,7 @@ router.put('/:id', function(req, res, next){
 	}); 
 });
 
-
+// delete function currently inactive b/c it doesn't delete foreignId in items table
 router.delete("/:id", loggedIn, function(req, res){
 	db.donor.findOne({
 		where: {id: req.body.kitten},
@@ -108,17 +107,6 @@ router.delete("/:id", loggedIn, function(req, res){
 	
 		});
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

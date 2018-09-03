@@ -1,10 +1,10 @@
-
+<div class='container'>
 <br>
-<h4><%= event.name %> Items List</h4>
+<h2><%= event.name %> Items</h2>
 
 <button class="shadow-sm btn btn-lg btn-warning" onclick="showForm()">New Item Form</button>
 
-<div id="hiddenForm">
+<div id="hiddenForm" class='shadow-sm form-style'>
 <form action='/item' method="POST">
 	<div>
 		<div hidden="true">
@@ -97,35 +97,36 @@
 </div>
 
 <br> <br>
-<h4>item list</h4>
 
 <% event.items.forEach(function(i){%>
-  <div>
-    <hr>
+  <div class='card list-card shadow-sm'>
  
-    <h4>
-    	<a href='edit/<%=i.id%>'>
-    	<%=i.number%>: <%=i.name%>
-   		</a>
-    </h4>
-    <p>
-        <%= i.description %>
-    </p>
-    <a name='<%=i.id%>' href='edit/<%=i.id%>' class='btn btn-warning edit-call'>edit</a>
+    <div class='card-body'>
+    	<h4 class='card-title'>
+	    	<a href='edit/<%=i.id%>'>
+	    	<%=i.number%>:
+	    	 <%=i.name%>
+	   		</a>
+	   	</h4>
+	    <p>
+	        <%= i.description %>
+	    </p>
+	    <a href='edit/<%=i.id%>' name='<%=i.id%>' class='btn btn-outline-warning text-dark edit-call list-btn'>edit</a>
 
-    <form action='/item/<%=event.id%>' class='delete-call'>
-    	<div class="form-class">
-    	<input name='kitten' id='kitten' value='<%=i.id%>'hidden>
-    	  <button type="submit" class="shadow-sm btn btn-danger">delete</button>
-    	</div>
-    </form>
-
+	    <form action='/item/<%=event.id%>' class='delete-call list-btn'>
+	    	<input name='kitten' id='kitten' value='<%=i.id%>'hidden>
+	    	  <button type="submit" class="btn btn-warning list-btn">delete</button>
+	    </form>
+	</div>
   </div>
 <%});%>
 
 
 <br><br><footer> 
-	<a href='#' class='btn btn-warning' disabled>items</a>
+	<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
+	<a href='#' class='btn btn-warning'>items</a>
 	<a href='/attendee/<%=event.id%>' class='btn btn-warning'>attendees</a>
 	<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
 </footer>
+
+</div>

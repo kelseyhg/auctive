@@ -19,7 +19,6 @@ router.get('/login', function(req, res){
 
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/profile',
-	successFlash: 'log-in SUCCESS',
 	failureRedirect: '/auth/login',
 	failureFlash: 'log-in failed'
 }));
@@ -57,6 +56,7 @@ router.post('/signup', function(req, res){
 	
 });
 
+// Currently unused/hidden route to make sub-users for the organization's account
 router.post('/newuser', function(req, res){
 	console.log(req.body);
 	req.body.admin = false;

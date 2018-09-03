@@ -67,12 +67,8 @@ app.get('/', function(req, res) {
 	  	console.log('ERR 1', err);
 	  	res.send(err);
 	  }
-	  // Authorize a client with credentials, then call the Google Sheets API.
-	  // authorize(JSON.parse(content), getThings);
-	  // // res.render('home');
-	  // var fetchedRows = [];
-	  // res.render('home', { fetchedRows: fetchedRows || [] });
 
+	  // Authorize a client with credentials, then call the Google Sheets API.
 	  authorize(JSON.parse(content), function(auth){
 	  	console.log('callback');
 	  	getThings(auth, function(fetchedRows){
@@ -83,24 +79,9 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/testwrite', function(req, res){
-	fs.readFile('credentials.json', (err, content) => {
-	  if (err) {
-	  	console.log('ERR 2', err);
-	  	res.send(err);
-	  }
-
-	  authorize(JSON.parse(content), function(auth){
-	  	runSample(auth, function(msg){
-  			res.send(msg);
-	  	});
-	  });
-	});
-});
-
-
 // GOOGLE SHEETS //
 
+// call send function to add items to google sheets
 app.get('/send', function(req, res){
   fs.readFile('credentials.json', (err, content) => {
     if (err) {
@@ -116,6 +97,7 @@ app.get('/send', function(req, res){
   });
 });
 
+// call write function to add attendees to google sheets
 app.get('/write', function(req, res){
   console.log("reaching the right get");
   fs.readFile('credentials.json', (err, content) => {
@@ -132,7 +114,7 @@ app.get('/write', function(req, res){
   });
 });
 
-
+// authorize user
 function authorize(credentials, callback) {
   const {client_secret, client_id, redirect_uris} = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
@@ -177,80 +159,7 @@ function getNewToken(oAuth2Client, callback) {
   });
 }
 
-/**
- * Prints the names and majors of students in a sample spreadsheet:
- * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
- */
-function listMajors(auth) {
-  const sheets = google.sheets({version: 'v4', auth});
-  sheets.spreadsheets.values.get({
-    spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-    range: 'Class Data!A2:E',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const rows = res.data.values;
-    if (rows.length) {
-      console.log('Name, Major:');
-      // Print columns A and E, which correspond to indices 0 and 4.
-      rows.map((row) => {
-        console.log(`${row[0]}, ${row[4]}`);
-      });
-    } else {
-      console.log('No data found.');
-    }
-  });
-}
-
-function getThings(auth, callback) {
-  const sheets = google.sheets({version: 'v4', auth});
-  sheets.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEETID,
-    range: 'Items!A2:H15',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const rows = res.data.values;
-    if (rows.length) {
-      console.log('ItemId, ItemNumber, name:');
-      // Print columns A and B, which correspond to indices 0 and 1, etc.
-      var fetchedRows = rows.map((row) => {
-        console.log(`${row[0]}, ${row[1]}, ${row[2]}`);
-        return `${row[0]}, ${row[1]}, ${row[2]}`;
-      });
-      return callback(fetchedRows);
-    } else {
-      console.log('No data found.');
-      callback([]);
-    }
-  });
-}
-
-function runSample (auth, callback) {
-  const sheets = google.sheets({version: 'v4', auth});
-  var request = {
-    spreadsheetId: SPREADSHEETID,  
-    range: 'Sheet3',
-    valueInputOption: 'USER_ENTERED',  
-    insertDataOption: 'INSERT_ROWS',  
-    resource: {
-      values: [
-      	[1, 1030, 'gift card', 'card', 'hi', 3, 155, 32, 46, 81],
-      	[2, 1031, 'gift certificate', 'certificate', 'world', 3, 155, 32, 46, 81]
-  	  ]
-    },
-    auth: auth,
-  };
-
-  sheets.spreadsheets.values.append(request, function(err, response) {
-    if (err) {
-      return callback(err);
-    }
-
-    return callback('SUCCESS');
-  });
-}
-
-
+// add items to google sheets
 function addItems (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
@@ -273,6 +182,7 @@ function addItems (auth, values, callback) {
   });
 }
 
+// add attendees to google sheets
   function addAttendees (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {

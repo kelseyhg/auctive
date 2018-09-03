@@ -10,7 +10,7 @@ var router = express.Router();
 // get login authorization helper
 var loggedIn = require('../middleware/loggedIn');
 
-
+// get items list/new item form for a given event id
 router.get('/:id', loggedIn, function(req, res){
 	db.donor.findAll().then(function(allDonors){
 		db.event.findOne({
@@ -23,6 +23,7 @@ router.get('/:id', loggedIn, function(req, res){
 	});
 });
 
+// add new item
 router.post('/', function(req, res, next){
     req.body.active = true;
     console.log(req.body);
@@ -36,6 +37,7 @@ router.post('/', function(req, res, next){
     });
 });
 
+// get edit page for a given item
 router.get('/edit/:id', loggedIn, function(req, res){
 	db.donor.findAll().then(function(allDonors){
 		db.item.findOne({
@@ -46,7 +48,8 @@ router.get('/edit/:id', loggedIn, function(req, res){
 		});
 	});
 });
-	
+
+// update item information	
 router.put('/:id', function(req, res, next){
 
 		console.log("!!!!!!!!!!", req.body);
@@ -71,7 +74,7 @@ router.put('/:id', function(req, res, next){
 });
 
 
-
+// delete item record
 router.delete("/:id", loggedIn, function(req, res){
 console.log("!!!!!!!!!!", req.body.kitten);
 	db.item.destroy({

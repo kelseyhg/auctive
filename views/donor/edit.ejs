@@ -1,41 +1,51 @@
-<h2>donor edit page reached</h2>
 
-<form action='/donor/<%=donor.id%>' class='edit-call'>
-		<input type='text' class='form-control' id='id' name='id' value='<%=donor.id%>'>
-		<div class='form-row'>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='name'>Donor Name</label>
-				<input type='text' class="form-control" id='name' name='name' value='<%=donor.name%>' required>
-			</div>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='contactName'> Contact Name</label>
-				<input type='text' class="form-control" id='contactName' name='contactName' value='<%=donor.contactName%>'>
-			</div>
-		</div>
-		<div class='form-row'>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='email'>Email</label>
-				<input type='email' class="form-control" id='email' name='email' value='<%=donor.email%>'>
-			</div>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='phone'>Phone Number</label>
-				<input type='text' class="form-control" id='phone' name='phone' value='<%=donor.phone%>'>
-			</div>
-		</div>
-		<div class='form-row'>
-			<div class='inpt field col-md-12 form-group'>
-				<label for='notes'>Notes</label>
-				<textarea class="form-control" id='notes' name='notes'><%=donor.notes%></textarea>
-			</div>
-		</div>
-	
-		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Update Donor</button>
-	</div>
-</form>
+<div class='container'>
 
-<br><br>
-<footer> 
-	<a href='/item/<%=currentEvent%>' class='btn btn-warning' >items</a>
-	<a href='/attendee/<%=currentEvent%>' class='btn btn-warning'>attendees</a>
-	<a href='/sell/receipt/<%=currentEvent%>' class='btn btn-warning'>checkout</a>
-</footer>
+	<br>
+
+	<h3><%=donor.name%></h3>
+
+	<br>
+
+	<form action='/donor/<%=donor.id%>' class='edit-call form-style shadow-sm'>
+			<input type='text' class='form-control' id='id' name='id' value='<%=donor.id%>' hidden>
+			<div class='form-row'>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='name'>Donor Name</label>
+					<input type='text' class="form-control" id='name' name='name' value='<%=donor.name%>' required>
+				</div>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='contactName'> Contact Name</label>
+					<input type='text' class="form-control" id='contactName' name='contactName' value='<%=donor.contactName%>'>
+				</div>
+			</div>
+			<div class='form-row'>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='email'>Email</label>
+					<input type='email' class="form-control" id='email' name='email' value='<%=donor.email%>'>
+				</div>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='phone'>Phone Number</label>
+					<input type='text' class="form-control" id='phone' name='phone' value='<%=donor.phone%>'>
+				</div>
+			</div>
+			<div class='form-row'>
+				<div class='inpt field col-md-12 form-group'>
+					<label for='notes'>Notes</label>
+					<textarea class="form-control" id='notes' name='notes'><%=donor.notes%></textarea>
+				</div>
+			</div>
+		
+			   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Update Donor</button>
+		</div>
+	</form>
+
+	<br><br>
+	<footer> 
+		<a href='/event/<%=currentEvent.name%>' class='btn btn-warning'>event page</a>
+		<a href='/item/<%=currentEvent.id%>' class='btn btn-warning' >items</a>
+		<a href='/attendee/<%=currentEvent.id%>' class='btn btn-warning'>attendees</a>
+		<a href='/sell/receipt/<%=currentEvent.id%>' class='btn btn-warning'>checkout</a>
+	</footer>
+
+</div>

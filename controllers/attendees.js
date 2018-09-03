@@ -10,6 +10,7 @@ var router = express.Router();
 // get login authorization helper
 var loggedIn = require('../middleware/loggedIn');
 
+// show attendees for current event
 router.get('/:id', loggedIn, function(req, res){
 	db.event.findOne({
 		where: {id: req.params.id},
@@ -20,6 +21,7 @@ router.get('/:id', loggedIn, function(req, res){
 	});	
 });
 
+// get edit attendee form
 router.get('/edit/:id', loggedIn, function(req, res){
 
 	console.log("oooooooo", req.params.name)
@@ -31,6 +33,7 @@ router.get('/edit/:id', loggedIn, function(req, res){
 	});
 });
 
+// add new attendee
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
@@ -64,6 +67,7 @@ router.post('/', function(req, res){
 	}); 
 });
 
+// edit attendee info
 router.put('/:id', function(req, res, next){
 
 		console.log("!!!!!!!!!!", req.body);

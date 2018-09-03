@@ -1,70 +1,76 @@
-<br>
+<div class='container'>
 
-<button class="btn-warning btn-lg" onclick="showForm()">New Attendee Form</button>
+	<br>
 
-<div id="hiddenForm">
-<form action='/donor' method="POST">
-	<div>
-			<input name='eventId' value='<%=event.id%>' hidden>
-		<div class='form-row'>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='name'>Donor Name</label>
-				<input type='text' class="form-control" id='name' name='name' required>
+	<h3><%= event.name %> Donors</h3>
+
+	<br>
+
+	<button class="btn-warning btn-lg" onclick="showForm()">New Attendee Form</button>
+
+	<div id='hiddenForm' class='form-style'>
+	<form action='/donor' method="POST">
+		<div>
+				<input name='eventId' value='<%=event.id%>' hidden>
+			<div class='form-row'>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='name'>Donor Name</label>
+					<input type='text' class="form-control" id='name' name='name' required>
+				</div>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='contactName'> Contact Name</label>
+					<input type='text' class="form-control" id='contactName' name='contactName'>
+				</div>
 			</div>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='contactName'> Contact Name</label>
-				<input type='text' class="form-control" id='contactName' name='contactName'>
+			<div class='form-row'>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='email'>Email</label>
+					<input type='email' class="form-control" id='email' name='email'>
+				</div>
+				<div class='inpt field col-md-6 form-group'>
+					<label for='phone'>Phone Number</label>
+					<input type='text' class="form-control" id='phone' name='phone'>
+				</div>
 			</div>
+			<div class='form-row'>
+				<div class='inpt field col-md-12 form-group'>
+					<label for='notes'>Notes</label>
+					<textarea class="form-control" id='notes' name='notes'></textarea>
+				</div>
+			</div>
+		
+			   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Donor</button>
 		</div>
-		<div class='form-row'>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='email'>Email</label>
-				<input type='email' class="form-control" id='email' name='email'>
-			</div>
-			<div class='inpt field col-md-6 form-group'>
-				<label for='phone'>Phone Number</label>
-				<input type='text' class="form-control" id='phone' name='phone'>
-			</div>
-		</div>
-		<div class='form-row'>
-			<div class='inpt field col-md-12 form-group'>
-				<label for='notes'>Notes</label>
-				<textarea class="form-control" id='notes' name='notes'></textarea>
-			</div>
-		</div>
-	
-		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create Donor</button>
+	</form>
 	</div>
-</form>
+
+
+	<br> <br>
+
+	<% event.donors.forEach(function(d){%>
+	  <div class='card list-card shadow-sm'>
+	  	<div class='card-body'>
+		    <h4>
+		      <a href='edit/<%=d.id%>'>
+		        <%= d.name %>
+		      </a>
+		    </h4>
+		    <a href='edit/<%=d.id%>' class='btn btn-outline-warning list-btn'>edit</a>
+
+		    <form action='/donor/<%=event.id%>' class='delete-call list-btn'>
+		    	<input name='kitten' id='kitten' value='<%=d.id%>'hidden>
+		    	  <button type="submit" class="shadow-sm btn btn-warning text-dark">delete</button>
+		    </form>
+		</div>
+	  </div>
+	<%});%>
+
+	<br><br>
+	<footer> 
+		<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
+		<a href='/item/<%=event.id%>' class='btn btn-warning'>items</a>
+		<a href='/attendee/<%=event.id%>' class='btn btn-warning'>attendees</a>
+		<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
+	</footer>
+
 </div>
-
-
-<br> <br>
-<h4>donor list</h4>
-
-<% event.donors.forEach(function(d){%>
-  <div>
-    <hr>
-   
-    <h4>
-      <a href='edit/<%=d.id%>'>
-        <%= d.name %>
-      </a>
-    </h4>
-    <a href='edit/<%=d.id%>' class='btn btn-warning'>edit</a>
-
-    <form action='/donor/<%=event.id%>' class='delete-call'>
-    	<div class="form-class">
-    	<input name='kitten' id='kitten' value='<%=d.id%>'hidden>
-    	  <button type="submit" class="shadow-sm btn btn-danger">delete</button>
-    	</div>
-    </form>
-  </div>
-<%});%>
-
-<br><br>
-<footer> 
-	<a href='/item/<%=event.id%>' class='btn btn-warning'>items</a>
-	<a href='/attendee/<%=event.id%>' class='btn btn-warning'>attendees</a>
-	<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
-</footer>

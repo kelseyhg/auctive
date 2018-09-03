@@ -45,7 +45,7 @@ router.get("/:name", loggedIn, function(req, res) {
 	db.event.findOne({
 		where: {name: req.params.name},
 	}).then(function(foundEvent){
-		currentEvent = foundEvent.id;
+		currentEvent = foundEvent;
 		console.log('>>>>>>>', currentEvent);
 		res.render("event/show", {event: foundEvent});
 	}).catch(function(err){
@@ -86,27 +86,5 @@ router.get('/ireport/:id', loggedIn, function(req, res){
 	});
 });
 
-// GOOGLE SHEETS
-
-//WRITE ITEM REPORT TO SHEET "ITEMS"
-/*
-router.get('/send', function(req, res){
-	 req.body.active = true;
-	console.log("values", req.body.values);
-  fs.readFile('credentials.json', (err, content) => {
-    if (err) {
-      console.log('ERR 2', err);
-      res.send(err);
-    }
-
-    authorize(JSON.parse(content), function(auth){
-      addItems(auth, req.body.values, function(msg){
-        res.send('sent');
-      });
-    });
-  });
-});  */
-
-// END GOOGLE SHEETS
 
 module.exports = router;
