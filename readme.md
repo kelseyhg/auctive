@@ -2,11 +2,18 @@
 
 This app helps manage live auctions by storing attendee, item donor, and item information, allowing the user to mark items as sold, generating receipts for successful bidders, and exporting event information to Google Sheets.
 
+## User Stories
+
+User is an event coordinator for a nonprofit planning an auction fundraiser
+* She wants to be able to track donors, donated, items, and attendees
+* She wants this information to be easy to access and update during the event
+* She wants to efficiently provide attendees with accurate receipts upon checkout
+* She wants to be able to export her event data for analysis and to share records
 
 ### User Model
 
 | Column Name | SQL Type | Notes |
-|-------------|----------|-----------------------------------|
+|-------------|----------|-------------------------------------|
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
@@ -19,7 +26,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 ### Event Model
 
 | Column Name | SQL Type | Notes |
-|-------------|----------|------------------------------------|
+|-------------|----------|--------------------------------------|
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
@@ -32,7 +39,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 ### Donor Model
 
 | Column Name | SQL Type | Notes |
-|-------------|----------|-----------------------------------|
+|-------------|----------|-------------------------------------|
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
@@ -45,7 +52,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 ### Item Model
 
 | Column Name | SQL Type | Notes |
-|-------------|----------|--------------------------------|
+|-------------|----------|-------------------------------------|
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
