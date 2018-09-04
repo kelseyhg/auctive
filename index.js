@@ -18,6 +18,8 @@ const SPREADSHEETID = "1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo";
 global.eventItems = [];
 global.eventAttendees = []; 
 global.currentEvent = ''; 
+global.itemRange = 'Items!A2-F90';
+global.attendeeRange = 'Attendees!A2-F50';
 
 // This will run on server start.
 // fs.readFile('credentials.json', (err, content) => {
@@ -71,15 +73,29 @@ app.get('/', function(req, res) {
 	  // Authorize a client with credentials, then call the Google Sheets API.
 	  authorize(JSON.parse(content), function(auth){
 	  	console.log('callback');
-	  	getThings(auth, function(fetchedRows){
-	  		console.log('fetchedRows', fetchedRows);
-	  		res.render('home', { fetchedRows: fetchedRows || [] });
-	  	});
+	  	res.render('home');
 	  });
 	});
 });
 
 // GOOGLE SHEETS //
+
+// update data ranges
+function updateRanges() {
+  console.log('route reached');
+  /*var i = document.getElementById('iRange').value;
+  var a = document.getElementById('aRange').value;
+  console.log("iiii", i, "aaaa", a);
+  if (i && a )*/
+  itemRange = 200;
+  attendeeRange = 400;  
+  /*} else {
+    itemRange = 'Items!A2:F80';
+    attendeeRange = 'Attendees!A2:F50';
+  }
+
+  console.log("itemRange", itemRange);*/
+}
 
 // call send function to add items to google sheets
 app.get('/send', function(req, res){
@@ -164,7 +180,7 @@ function addItems (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
     spreadsheetId: SPREADSHEETID,  
-    range: 'Items!A2:F50',
+    range: itemRange,
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'OVERWRITE',  
     resource: {
@@ -187,7 +203,7 @@ function addItems (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
     spreadsheetId: SPREADSHEETID,  
-    range: 'Attendees!A2:F50',
+    range: attendeeRange,
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'OVERWRITE',  
     resource: {

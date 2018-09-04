@@ -48,7 +48,7 @@
 				</select>
 		</div>
 	</div>
-				<a href='/donor/<%=event.id%>' class='col-md-2 form-control btn btn-warning'>New Donor</a> <br>
+		<a href='/donor/<%=event.id%>' class='col-md-2 form-control btn btn-warning'>New Donor</a> <br>
 	
 		<div class='form-row'>
 			<div class='inpt field col-md-3 form-group'>
@@ -61,6 +61,7 @@
 </form>
 </div>
 
+<%# Donor form currently hidden permanently, ideally could add donor from items page too%>
 <div hidden>
 <form action='/donor' method="POST" id="donorForm">
 	<div>
@@ -98,6 +99,7 @@
 
 <br> <br>
 
+<%# loop through items to make a list %>
 <% event.items.forEach(function(i){%>
   <div class='card list-card shadow-sm'>
  
@@ -121,7 +123,7 @@
   </div>
 <%});%>
 
-
+<%#footer not in partials b/c I didn't want it on every page%>
 <br><br><footer> 
 	<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
 	<a href='#' class='btn btn-warning'>items</a>

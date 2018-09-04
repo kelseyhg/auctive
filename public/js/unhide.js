@@ -1,3 +1,6 @@
+
+// reveal and re-hide forms with hiddenForm id
+// PROBLEM: requires two clicks for first reveal, idk why
 function showForm() {
     var x = document.getElementById("hiddenForm");
     if (x.style.display === "none") {
@@ -7,8 +10,5 @@ function showForm() {
     }
 }
 
-function selectStatus(status) {
-	 var element = document.getElementById("ticket");
-    element.value = status;
-}
+
 

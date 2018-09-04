@@ -26,10 +26,11 @@ router.get('/', loggedIn, function(req, res){
 router.post('/', function(req, res){
 	req.body.active = true;
 	console.log(req.body);
+	itemRange = req.body.iRange;
+	attendeeRange = req.body.aRange;
 	db.event.findOrCreate({
 		where: { name: req.body.eventName },
 		defaults: req.body
-
 	}).spread(function(event, wasCreated){
 		res.redirect('/event');
 	}).catch(function(err){

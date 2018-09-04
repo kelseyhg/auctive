@@ -1,3 +1,154 @@
-h4 {
-	color: red;
-}
+body {
+ 		background-color: #fff; 
+		background-image: 
+		linear-gradient(#eee .1em, transparent .1em);
+		background-size: 100% 1.2em;
+ 		font-family: 'Lato', sans-serif;
+ 	}
+	h1 {
+		font-size: 120px;
+		font-family: 'Elsie Swash Caps', serif;
+	}
+
+	h2 {
+		text-align: center;
+		font-weight: bold;
+		font-size: 60px;
+	}
+
+	h3 {
+		text-align: center;
+		font-weight: bold;
+		font-size: 40px;
+	}
+
+	a {
+		color: black;
+	}
+
+	#hiddenForm {
+		display: none;
+	}
+
+	.form-style {
+		background-color: white;
+		padding: 3vh;
+		border-radius: 10px;
+	}
+
+	.home-form {
+		text-align: left;
+		color: black;
+		margin: auto;
+		margin-top: 3vh;
+		width: 80vw;
+	}
+
+	.list-card {
+		padding: 3vh;
+		margin: 3vh;
+		border: none;
+		border-radius: 10px
+	}
+
+	.list-btn {
+		display: inline-block;
+	}
+
+	.events-list {
+		width: 50vw;
+		text-align: center;
+		margin: 0 15vw;
+	}
+
+	.receipt {
+		width: 500px;
+	}
+
+	.logo {
+		padding: 20px;
+	}
+
+	.navbar-brand {
+		font-family: 'Elsie Swash Caps', cursive;
+	}
+
+	.home {
+		margin: 10px;
+	}
+	.nav-link {
+		color: white;
+	}
+	.events {
+		border-radius: 30px;
+		background-color: #10B2B2;
+		width: 400px;
+		height: 400px;
+		text-align: center;
+		padding-top: 120px;
+		margin: 15px;
+	}
+
+	.newEvent {
+		padding-top: 60px;
+	}
+
+	.event-container {
+		padding: 5vh 10vh;
+	} 
+
+	.flex-container {
+		display: flex;
+		justify-content: center;
+		width: 80vw;
+		flex-wrap: wrap;
+		margin: auto;	
+	}
+
+	.event-btn {
+		display: block;
+		margin: 3vh;
+
+	}
+
+	#donorForm {
+		display: block;
+	}
+
+	.win-form {
+		margin: 0 20vw;
+
+	}
+
+	.win-page {
+		margin-left: 5%;
+	}
+
+	#homepage{
+		background-image: url("https://res.cloudinary.com/kelseygreen/image/upload/v1535947094/auctave-home-2.png");
+		background-size: cover;
+		width: 100vw;
+		height: 95vh;
+	}
+
+	#home-banner {
+		text-align: center;
+		color: white;
+		margin: auto;
+		width: 80vw;
+		height: 60vh;
+		padding: 10vh 20vh;
+	}
+
+	.flash {
+		color:white;
+		font-size: 12px!important;
+		padding: 0 20px;
+		margin: auto;
+		margin-top: 1vh;
+		border: none;
+	}
+
+	footer { 
+	text-align: center;
+	 }

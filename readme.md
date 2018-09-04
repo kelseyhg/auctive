@@ -60,7 +60,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 | PUT | sell/show/:id | controllers/sales.js | Submit form to record payment |
 | GET | event/areport/:id | events/auth.js | Show attendee summary for an event |
 | GET | event/ireport/:id | events/auth.js | Show item summary for an event |
-| GET | auth/logout | controllers/auth.js | Logout + redirect to home |
+
 
 ## Steps for Use
 

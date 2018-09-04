@@ -18,6 +18,7 @@
 		  </thead>
 
 		<%var total = 0;%>
+		<%# show each item purchased by attendee%>
 		<%item.forEach(function(i){%>
 			<% if (i.attendeeId === attendee.id){%>
 		  <tbody>
@@ -27,6 +28,7 @@
 		      <td></td>
 		      <td><%=i.soldPrice%></td>
 		    </tr>
+		    <%# keep a running total%>
 		    <%total += i.soldPrice%>
 		<%}%>
 		<%});%>
@@ -35,6 +37,7 @@
 		   <th scope="row"></th>
 		   <td></td>
 		   <td>Total</td>
+		   <%# display total cost%>
 		   <td><%=total%></td>
 		</tr>
 
@@ -43,7 +46,7 @@
 
 
 	<br><br>
-	
+		<%# form sets paid status to true and records cash/card payments%>
 		<form action='/sell/show/<%=attendee.id%>' class='edit-call'>
 			<input type='text' class='form-control' id='paid' name='paid' value='true' hidden>
 			<input type='text' class='form-control' id='id' name='id' value='<%=attendee.id%>' hidden>
@@ -56,6 +59,8 @@
 					<label for='card'>Card Amt</label>
 					<input type='text' class='form-control' id='card' name='card' value=0>
 				</div>
+				<%# total payment doesn't have to equal total owed%>
+				<%# some attendees add an additional donation at checkout %>
 			
 			 </div>
 			 	<button type="submit" class="shadow-sm btn btn-lg btn-warning">Mark as Paid</button>
@@ -67,6 +72,7 @@
 
 	<br>
 
+	<%#footer not in partials b/c I didn't want it on every page%>
 	<footer> 
  	<a href='/event/<%=currentEvent.name%>' class='btn btn-warning'>event page</a>
 	<a href='/item/<%=currentEvent%>' class='btn btn-warning'>items</a>

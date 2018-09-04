@@ -5,7 +5,7 @@
   <h3>Attendee Check Out</h3>
 
   <br>
-
+  <%# loops through attendees for checkout%>
   <% event.attendees.forEach(function(a){%>
   <div class='card list-card shadow-sm'>
 
@@ -21,6 +21,7 @@
   <%});%>
 
   <br><br>
+  <%#footer not in partials b/c I didn't want it on every page%>
   <footer>
     <a href='/event/<%=currentEvent.name%>' class='btn btn-warning'>event page</a>
     <a href='/item/<%=currentEvent.id%>' class='btn btn-warning'>items</a>

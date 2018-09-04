@@ -1,3 +1,5 @@
+
+// all edits pass through
 $(".edit-call").submit(function(e){
 	e.preventDefault();  //don't submit/send form
 	console.log("00000000",this);
@@ -17,7 +19,7 @@ $(".edit-call").submit(function(e){
 
 });
 
-
+// delete for items
 $(".delete-call").submit(function(e){
 	e.preventDefault();
 	console.log("???????", this);

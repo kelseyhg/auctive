@@ -3,10 +3,17 @@
 
 <h2><%=currentUser.orgName%> Events</h2>
 
+<div class='card list-card shadow'>
+		<p> Reports will be written into this spreadsheet: <a href='https://docs.google.com/spreadsheets/d/1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo/edit#gid=0'>https://docs.google.com/spreadsheets/d/1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo/edit#gid=0</a>  </p>
+
+		<p> You can add additional sheets for your reports. Below, enter the A1 notation (sheetName!firstCell:lastCell) where you would like data to be written for the Item Report and Attendee Report.</p>
+
+	</div>
+
 	<div class = 'flex-container'>
 
-
-		<div class='events shadow'>
+		<%# New event form %>
+		<div class='events shadow newEvent'>
 			<h3>New Event</h3>
 			<form action='/event' method='POST'>
 				<div class='inpt field col-md-12 form-group'>
@@ -18,17 +25,26 @@
 				<div class='form-group' hidden>
 					<input type='integer' name='userId' value='<%=currentUser.id%>'>
 				</div>
+				<div class='row'>
+					<div class='inpt col-md-5 form-group win-page'>
+						<input type='text' class='form-control' id='iRange' name='iRange'value='<%=itemRange%>'>
+					</div>
+					<div class='inpt col-md-5 form-group win-page'>
+						<input type='text' class='form-control' id='aRange' name='aRange'value='<%=attendeeRange%>'>
+					</div>
+				</div>
 				<button type='submit' class='btn btn-lg btn-light'>Create</button>
 			</form>
 		</div>
 			
-<%events.forEach(function(e){%>
-	<div class='events shadow'>
-		<div class='event-container'>
-			<h3><%=e.name%></h3>
-			<a href='/event/<%=e.name%>' class='btn btn-lg btn-light'>Open</a>
+	<%# loops through to show extant events %>			
+	<%events.forEach(function(e){%>
+		<div class='events shadow'>
+			<div class='event-container'>
+				<h3><%=e.name%></h3>
+				<a href='/event/<%=e.name%>' class='btn btn-lg btn-light'>Open</a>
+			</div>
 		</div>
-	</div>
-	<%});%>
+		<%});%>
 
 </div>

@@ -14,6 +14,7 @@
 	    </tr>
 	  </thead>
 
+<%# loops through items to display and fill array with info to send to Sheets %>
 <%item.forEach(function(i){%>
 	<%var row = []%>
 
@@ -45,8 +46,10 @@
 	  </tbody>
 	</table>
 
+<%# array of arrays in format for google sheets %>
 <%console.log(eventItems)%>
 
+<%# route is in index.js%>
 <a href='/send' class='btn btn-large btn-warning'>send report</a>
 
 
