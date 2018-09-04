@@ -61,7 +61,7 @@
 </div>
 
 <br> <br>
-<%#loops through attendees to make a list%>
+<%# loops through attendees to make a list%>
 <% event.attendees.forEach(function(a){%>
   <div class='card list-card shadow-sm'>
   	 <div class='card-body'>
@@ -78,7 +78,7 @@
 <%});%>
 
 <br><br>
-<%#footer not in partials b/c I didn't want it on every page%>
+<%# footer not in partials b/c I didn't want it on every page%>
 <footer> 
 	<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
 	<a href='/item/<%=event.id%>' class='btn btn-warning'>items</a>

@@ -82,7 +82,7 @@ router.post('/newuser', function(req, res){
 
 router.get('/logout', function(req, res){
 	req.logout();
-	req.flash('success', 'successfully logged out!');
+	req.flash('success');
 	res.redirect('/');
 });
 

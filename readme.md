@@ -5,7 +5,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 ## User Stories
 
 User is an event coordinator for a nonprofit planning an auction fundraiser
-* She wants to be able to track donors, donated, items, and attendees
+* She wants to be able to track donors, donated items, and attendees
 * She wants this information to be easy to access and update during the event
 * She wants to efficiently provide attendees with accurate receipts upon checkout
 * She wants to be able to export her event data for analysis and to share records
@@ -13,7 +13,7 @@ User is an event coordinator for a nonprofit planning an auction fundraiser
 ### User Model
 
 | Column Name | SQL Type | Notes |
-|-------------|----------|-------------------------------------|
+|-------------|----------|---------------------------------------|
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
@@ -166,7 +166,7 @@ User is an event coordinator for a nonprofit planning an auction fundraiser
 	* Click send report to send info to designated google sheet
 
 
-## Problems:
+## Issues:
 * Delete routes are needed for items, donors, and events
 * There is no edit function for events
 * Needs better control over sheets destination: ability to set spreadsheet and edit sheets ranges
@@ -179,6 +179,8 @@ User is an event coordinator for a nonprofit planning an auction fundraiser
 * Heroku deployment is unsuccuessful
 * Need better success message/redirect after writing to Sheets
 * Range variables don't work in Sheets function
+* Need error detection when selling items (currently sends false success message if a number is mistyped)
+* In items edit, need to add dropdown for donor and for item type
 
 
 

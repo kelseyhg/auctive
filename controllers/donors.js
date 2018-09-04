@@ -76,10 +76,11 @@ router.put('/:id', function(req, res, next){
 		
  )
  .then(function(updatedDonor){
-    	res.redirect('/event');
+		req.flash('success', 'donor updated');
+    	res.send('cool');
 	}).catch(function(err){
 		req.flash('error', err.message);
-		res.redirect('/');
+		res.send('nope');
 	}); 
 });
 
