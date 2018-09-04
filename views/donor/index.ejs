@@ -6,7 +6,7 @@
 
 	<br>
 
-	<button class="btn-warning btn-lg" onclick="showForm()">New Attendee Form</button>
+	<button class="btn-warning btn-lg" onclick="showForm()">New Donor Form</button>
 
 	<div id='hiddenForm' class='form-style'>
 	<form action='/donor' method="POST">
@@ -55,11 +55,11 @@
 		        <%= d.name %>
 		      </a>
 		    </h4>
-		    <a href='edit/<%=d.id%>' class='btn btn-outline-warning list-btn'>edit</a>
+		    <a href='edit/<%=d.id%>' class='btn btn-outline-warning list-btn text-dark'>edit</a>
 
 		    <form action='/donor/<%=event.id%>' class='delete-call list-btn'>
 		    	<input name='kitten' id='kitten' value='<%=d.id%>'hidden>
-		    	  <button type="submit" class="shadow-sm btn btn-warning text-dark">delete</button>
+		    	  <button type="submit" class="shadow-sm btn btn-warning">delete</button>
 		    </form>
 		</div>
 	  </div>

@@ -2,13 +2,6 @@
 
 This app helps manage live auctions by storing attendee, item donor, and item information, allowing the user to mark items as sold, generating receipts for successful bidders, and exporting event information to Google Sheets.
 
-## What it includes:
-
-* Sequelize models and migration for user model
-* Settings for Postgresql
-* Passport and passport local
-* Express sessions for logged-in user
-* Connect-flash error and success messages on log-in and log-out
 
 ### User Model
 
@@ -161,7 +154,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 	* Generate report showing item name, number, value, bidder number, and amount sold for
 	* Click send report to send info to designated google sheet
 
-#### 10. Attendee Report
+#### 11. Attendee Report
 	* Generate report showing attendee name, bid number, total cost, and paid/unpaid status
 	* Click send report to send info to designated google sheet
 
@@ -174,6 +167,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 * Needs table for many-to-many items, like drinks and raffle tickets
 * Should generate pdf receipts
 * Lists of donors/items/attendees should be sorted by number and have a search function
+* Logo on receipt page is hard-coded, not changeable
 
 
 

@@ -35,7 +35,7 @@ router.post('/', function(req, res){
 		res.redirect('/event');
 	}).catch(function(err){
 		req.flash('error', err.message);
-		res.redirect('/event/');
+		res.redirect('/event/show', { event: event });
 	});
 	
 });

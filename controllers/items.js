@@ -30,7 +30,7 @@ router.post('/', function(req, res, next){
     db.item.create(req.body)
     .then(function(createdItem){
     	req.flash('success', 'wheee');
-    	res.redirect('/item/' + req.body.eventId);
+    	res.redirect('/event/' + currentEvent.id);
     }).catch(function(err){
         req.flash('error', err.message);
         res.redirect('/');
@@ -55,6 +55,7 @@ router.put('/:id', function(req, res, next){
 		console.log("!!!!!!!!!!", req.body);
 		db.item.update(
 		{
+			number: req.body.number,
 			name: req.body.name,
    			type: req.body.type,
    			description: req.body.description,
