@@ -25,7 +25,6 @@ router.get('/', loggedIn, function(req, res){
 
 router.post('/', function(req, res){
 	req.body.active = true;
-	console.log(req.body);
 	itemRange = req.body.iRange;
 	attendeeRange = req.body.aRange;
 	db.event.findOrCreate({
@@ -42,12 +41,10 @@ router.post('/', function(req, res){
 
 
 router.get("/:name", loggedIn, function(req, res) {
-	console.log("999999", req.params.name);
 	db.event.findOne({
 		where: {name: req.params.name},
 	}).then(function(foundEvent){
 		currentEvent = foundEvent;
-		console.log('>>>>>>>', currentEvent);
 		res.render("event/show", {event: foundEvent});
 	}).catch(function(err){
     console.log(err);

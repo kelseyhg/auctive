@@ -32,7 +32,6 @@ router.get('/newuser', function(req, res){
 });
 
 router.post('/signup', function(req, res){
-	console.log(req.body);
 	req.body.admin = true;
 	db.user.findOrCreate({
 		where: { email: req.body.email },
@@ -58,7 +57,6 @@ router.post('/signup', function(req, res){
 
 // Currently unused/hidden route to make sub-users for the organization's account
 router.post('/newuser', function(req, res){
-	console.log(req.body);
 	req.body.admin = false;
 	db.user.findOrCreate({
 		where: { userName: req.body.userName },

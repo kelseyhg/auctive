@@ -23,8 +23,6 @@ router.get('/:id', loggedIn, function(req, res){
 
 // get edit attendee form
 router.get('/edit/:id', loggedIn, function(req, res){
-
-	console.log("oooooooo", req.params.name)
 	db.attendee.findOne({
 		where: {id: req.params.id},
 	})
@@ -36,7 +34,6 @@ router.get('/edit/:id', loggedIn, function(req, res){
 // add new attendee
 router.post('/', function(req, res){
 	req.body.active = true;
-	console.log(req.body);
 	db.attendee.findOrCreate({
 		where: {
 			name: req.body.name,
@@ -54,7 +51,6 @@ router.post('/', function(req, res){
 			where: {id: req.body.eventId}
 		}).spread(function(event, found){
 			attendee.addEvent(event).then(function(event){
-				console.log(event, "added to", attendee);
 			});
 		});
 	})
@@ -69,8 +65,6 @@ router.post('/', function(req, res){
 
 // edit attendee info
 router.put('/:id', function(req, res, next){
-
-		console.log("!!!!!!!!!!", req.body);
 		db.attendee.update(
 		{
 			name: req.body.name,
@@ -80,16 +74,15 @@ router.put('/:id', function(req, res, next){
    			ticket: req.body.ticket,
    			table: req.body.table
    		}, 
-		{returning: true, where: {id: req.body.id} }
-		
- )
- .then(function(updatedAttendee){
-		req.flash('success', 'item updated');
-    	res.send('cool');
-	}).catch(function(err){
-		req.flash('error', err.message);
-		res.send('nope');
-	}); 
+		{returning: true, where: {id: req.body.id} }		
+ 	)
+ 	.then(function(updatedAttendee){
+			req.flash('success', 'item updated');
+    		res.send('cool');
+		}).catch(function(err){
+			req.flash('error', err.message);
+			res.send('nope');
+		}); 
 });
 
 

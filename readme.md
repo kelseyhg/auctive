@@ -176,9 +176,9 @@ User is an event coordinator for a nonprofit planning an auction fundraiser
 * Lists of donors/items/attendees should be sorted by number and have a search function
 * Logo on receipt page is hard-coded, not changeable
 * No way for user to edit info or reset password
-
-
-
+* Heroku deployment is unsuccuessful
+* Need better success message/redirect after writing to Sheets
+* Range variables don't work in Sheets function
 
 
 

@@ -25,7 +25,6 @@ router.get('/:id', loggedIn, function(req, res){
 
 // submits item and winning bidder/bid info
 router.put('/:id', function(req, res, next){
-	console.log("!!!!!!!!!!", req.body);
 	db.attendee.findOne({
 		where: { bidNumber: req.body.bidNumber }
 	}).then(function(attendee){
@@ -83,7 +82,6 @@ router.get('/show/:id', loggedIn, function(req, res){
 
 // submits info about bidder payment and payment completion
 router.put('/show/:id', function(req,res, next){
-	console.log("!!!!!!!!!!", req.body);
 	db.attendee.update(
 	{
 		cardPayment: req.body.card,
@@ -99,8 +97,6 @@ router.put('/show/:id', function(req,res, next){
 			res.send(err, 'this is not good');
 		});
 });
-
-
 
 
 module.exports = router;

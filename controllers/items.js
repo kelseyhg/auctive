@@ -26,7 +26,6 @@ router.get('/:id', loggedIn, function(req, res){
 // add new item
 router.post('/', function(req, res, next){
     req.body.active = true;
-    console.log(req.body);
     db.item.create(req.body)
     .then(function(createdItem){
     	req.flash('success', 'item added');
@@ -51,17 +50,15 @@ router.get('/edit/:id', loggedIn, function(req, res){
 
 // update item information	
 router.put('/:id', function(req, res, next){
-
-		console.log("!!!!!!!!!!", req.body);
-		db.item.update(
+	db.item.update(
 		{
-			number: req.body.number,
-			name: req.body.name,
-   			type: req.body.type,
-   			description: req.body.description,
-   			marketPrice: req.body.marketPrice,
-   			soldPrice: req.body.soldPrice,
-   			attendeeId: req.body.attendeeId
+		number: req.body.number,
+		name: req.body.name,
+   		type: req.body.type,
+   		description: req.body.description,
+   		marketPrice: req.body.marketPrice,
+   		soldPrice: req.body.soldPrice,
+   		attendeeId: req.body.attendeeId
    		}, 
 		{returning: true, where: {id: req.body.id} }		
  )
@@ -77,7 +74,6 @@ router.put('/:id', function(req, res, next){
 
 // delete item record
 router.delete("/:id", loggedIn, function(req, res){
-console.log("!!!!!!!!!!", req.body.kitten);
 	db.item.destroy({
 		where: {id: req.body.kitten}
 	}).then(function(justDestroyed){

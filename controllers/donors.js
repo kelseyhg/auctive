@@ -35,7 +35,6 @@ router.get('/edit/:id', loggedIn, function(req, res){
 // add new donor
 router.post('/', function(req, res){
 	req.body.active = true;
-	console.log(req.body);
 	db.donor.findOrCreate({
 		where: {
 			name: req.body.name,
@@ -65,8 +64,6 @@ router.post('/', function(req, res){
 
 // edit donor info
 router.put('/:id', function(req, res, next){
-
-		console.log("!!!!!!!!!!", req.body);
 		db.donor.update(
 		{
 			name: req.body.name,
@@ -92,7 +89,6 @@ router.delete("/:id", loggedIn, function(req, res){
 		where: {id: req.body.kitten},
 		include: [db.event]
 	}).then(function(foundDonor){
-		console.log(foundDonor.name);
 		async.forEach(foundDonor.events, function(a, done){
 			foundDonor.removeEvent(a).then(function(){done();})
 		}, function(){

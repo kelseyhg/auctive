@@ -63,7 +63,6 @@ app.use('/sell', require('./controllers/sales'));
 
 // define routes
 app.get('/', function(req, res) {
-	console.log('got to home route');
 	fs.readFile('credentials.json', (err, content) => {
 	  if (err) {
 	  	console.log('ERR 1', err);
@@ -72,30 +71,12 @@ app.get('/', function(req, res) {
 
 	  // Authorize a client with credentials, then call the Google Sheets API.
 	  authorize(JSON.parse(content), function(auth){
-	  	console.log('callback');
 	  	res.render('home');
 	  });
 	});
 });
 
 // GOOGLE SHEETS //
-
-// update data ranges
-function updateRanges() {
-  console.log('route reached');
-  /*var i = document.getElementById('iRange').value;
-  var a = document.getElementById('aRange').value;
-  console.log("iiii", i, "aaaa", a);
-  if (i && a )*/
-  itemRange = 200;
-  attendeeRange = 400;  
-  /*} else {
-    itemRange = 'Items!A2:F80';
-    attendeeRange = 'Attendees!A2:F50';
-  }
-
-  console.log("itemRange", itemRange);*/
-}
 
 // call send function to add items to google sheets
 app.get('/send', function(req, res){
@@ -104,7 +85,6 @@ app.get('/send', function(req, res){
       console.log('ERR 2', err);
       res.send(err);
     }
-
     authorize(JSON.parse(content), function(auth){
       addItems(auth, eventItems, function(msg){
         res.send(msg);
@@ -115,13 +95,11 @@ app.get('/send', function(req, res){
 
 // call write function to add attendees to google sheets
 app.get('/write', function(req, res){
-  console.log("reaching the right get");
   fs.readFile('credentials.json', (err, content) => {
     if (err) {
       console.log('ERR 2', err);
       res.send(err);
     }
-
     authorize(JSON.parse(content), function(auth){
       addAttendees(auth, eventAttendees, function(msg){
         res.send(msg);
@@ -180,7 +158,7 @@ function addItems (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
     spreadsheetId: SPREADSHEETID,  
-    range: itemRange,
+    range: "Items!A2:F50",
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'OVERWRITE',  
     resource: {
@@ -203,7 +181,7 @@ function addItems (auth, values, callback) {
   const sheets = google.sheets({version: 'v4', auth});
   var request = {
     spreadsheetId: SPREADSHEETID,  
-    range: attendeeRange,
+    range: "Attendees!A2:F60",
     valueInputOption: 'USER_ENTERED',  
     insertDataOption: 'OVERWRITE',  
     resource: {

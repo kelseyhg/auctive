@@ -26,7 +26,6 @@ router.get('/newuser', function(req, res){
 });
 
 router.post('/newuser', function(req, res){
-	console.log(req.body);
 	req.body.admin = false;
 	db.user.findOrCreate({
 		where: { userName: req.body.userName },

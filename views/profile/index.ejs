@@ -27,6 +27,7 @@
 				</div>
 				<%# itemRange and attendeeRange are global variables so this is a bad fix %>
 				<%# creating a new event will change these values for every event %>
+				<%# !!! Functions won't accept ranges as a variable, so this isn't operational %>
 				<div class='row'>
 					<div class='inpt col-md-5 form-group win-page'>
 						<input type='text' class='form-control' id='iRange' name='iRange'value='<%=itemRange%>'>
