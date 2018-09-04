@@ -125,6 +125,7 @@ body {
 	}
 
 	#homepage{
+		background-color: #4fbcbc;
 		background-image: url("https://res.cloudinary.com/kelseygreen/image/upload/v1535947094/auctave-home-2.png");
 		background-size: cover;
 		width: 100vw;

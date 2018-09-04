@@ -1,58 +1,72 @@
+<div class='container'>
+	<br>
 
-<br>
-<h3><%=event.name%> Attendee Report</h3>
+	<h3><%=event.name%> Attendee Report</h3>
 
-<% eventAttendeess = []; %>
+	<% eventAttendeess = []; %>
 
-	<table class="table">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">Name</th>
-	      <th scope="col"></th>
-	      <th scope="col">Total</th>
-	      <th scope="col"></th>
-	    </tr>
-	  </thead>
+	<div class='card card-list'>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Name</th>
+		      <th scope="col"></th>
+		      <th scope="col">Total</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
 
-<%#loops through attendees to display and fill array with info to send to Sheets%>
-<%attendee.forEach(function(a){%>
+		<%#loops through attendees to display and fill array with info to send to Sheets%>
+		<%attendee.forEach(function(a){%>
 
-	<%var total = 0;%>
-	<%item.forEach(function(i){%>
-		<% if (i.attendeeId === a.id){%>
-	    <%total += i.soldPrice%>
-	<%}%>
-	<%});%>
+			<%var total = 0;%>
+			<%item.forEach(function(i){%>
+				<% if (i.attendeeId === a.id){%>
+			    <%total += i.soldPrice%>
+			<%}%>
+			<%});%>
 
-	<%var row = []%>
-	  <tbody>
-	    <tr>
-	      <th scope="row"><%=a.bidNumber%></th>
-	      	<%row.push(a.bidNumber)%>
-	      <td><%=a.name%></td>
-	      	<%row.push(a.name)%>
-	      <td><%=a.nameSecondary%></td>
-	      	<%row.push(a.nameSecondary)%>
-	      <td><%=total%></td>
-	      	<%row.push(total)%>
-	    <%if (a.paid) {%>
-	      <td>paid</td>
-	      	<%row.push('paid')%>
-	    <%} else {%>
-	      <td>unpaid</td>
-	      	<%row.push('unpaid')%>
-	      <%}%>
-	    </tr>
-	    <%eventAttendees.push(row)%>
-	<%});%>
+			<%var row = []%>
+			  <tbody>
+			    <tr>
+			      <th scope="row"><%=a.bidNumber%></th>
+			      	<%row.push(a.bidNumber)%>
+			      <td><%=a.name%></td>
+			      	<%row.push(a.name)%>
+			      <td><%=a.nameSecondary%></td>
+			      	<%row.push(a.nameSecondary)%>
+			      <td><%=total%></td>
+			      	<%row.push(total)%>
+			    <%if (a.paid) {%>
+			      <td>paid</td>
+			      	<%row.push('paid')%>
+			    <%} else {%>
+			      <td>unpaid</td>
+			      	<%row.push('unpaid')%>
+			      <%}%>
+			    </tr>
+			    <%eventAttendees.push(row)%>
+			<%});%>
 
-	  </tbody>
-	</table>
+		  </tbody>
+		</table>
+	</div>
 
-	<%# array of arrays in format for google sheets %>
-	<%console.log(eventAttendees)%>
+		<%# array of arrays in format for google sheets %>
+		<%console.log(eventAttendees)%>
 
-<%# route is in index.js%>
-<a href='/write' class='btn btn-large btn-warning'>send report</a>
+		<br>
+		<%# route is in index.js%>
+		<a href='/write' class='btn btn-large btn-warning'>send report</a>
+
+		<%#footer not in partials b/c I didn't want it on every page%>
+	<footer> 
+		<a href='/event/<%=currentEvent.name%>' class='btn btn-warning'>event page</a>
+		<a href='/item/<%=currentEvent.id%>' class='btn btn-warning' >items</a>
+		<a href='/attendee/<%=currentEvent.id%>' class='btn btn-warning'>attendees</a>
+		<a href='/sell/receipt/<%=currentEvent.id%>' class='btn btn-warning'>checkout</a>
+	</footer>
+
+</div>
 

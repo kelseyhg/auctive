@@ -17,15 +17,72 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 | id | Integer | serial primary key |
 | createdAt | Date | automatically-generated |
 | updatedAt | Date | automatically-generated |
-| firstname	| String | - |
-| lastname | String | - |
-| email | String | usernameField for log-in |
+| orgName  | String | name of org running event|
+| userName | String | id for log-in |
+| email | String | - |
 | password | String | hashed with bcrypt |
-| dob | Date | - |
 | admin | Boolean | admin or regular user |
 
+### Event Model
 
-> NOTE: change these fields in model and migration files BEFORE running sequelize db:migrate
+| Column Name | SQL Type | Notes |
+|-------------|----------|------------------------------------|
+| id | Integer | serial primary key |
+| createdAt | Date | automatically-generated |
+| updatedAt | Date | automatically-generated |
+| name  | String | - |
+| date | Date | date of event |
+| userId | foreign key | id of user who created event |
+| email | String | - |
+| active | Boolean | whether event is active or over (un-used)|
+
+### Donor Model
+
+| Column Name | SQL Type | Notes |
+|-------------|----------|-----------------------------------|
+| id | Integer | serial primary key |
+| createdAt | Date | automatically-generated |
+| updatedAt | Date | automatically-generated |
+| name  | String | name of person or company |
+| contactName | String | name of contact person at company |
+| email | String | - |
+| phone | String | - |
+| notes | String | - |
+
+### Item Model
+
+| Column Name | SQL Type | Notes |
+|-------------|----------|--------------------------------|
+| id | Integer | serial primary key |
+| createdAt | Date | automatically-generated |
+| updatedAt | Date | automatically-generated |
+| number | Integer | id number fo event purposes |
+| name  | String | - |
+| type | String | item or certificate |
+| description | Text | - |
+| eventId | foreign key | id of event |
+| donorId | foreign key | id of item donor |
+| attendeeId | foreign key | id of winning bidder |
+| marketPrice | Integer | market value of item |
+| soldPrice | Text | amount of winning bid |
+
+### Attendee Model
+
+| Column Name | SQL Type | Notes |
+|-------------|----------|-------------------------------------|
+| id | Integer | serial primary key |
+| createdAt | Date | automatically-generated |
+| updatedAt | Date | automatically-generated |
+| name  | String | name of person |
+| nameSecondary | String | partner/guest with shared bid # |
+| bidNumber | Integer | - |
+| ticketStatus | String | paid for ticket, unpaid, guest |
+| table | Integer | table number assignment |
+| phone | String | - |
+| email | String | - |
+| paid |  Boolean | paid for items won T/F |
+| cardPayment | Integer | payment amount by card |
+| cashPayment | Numeric | payment amount by cash |
 
 ### Routes
 
@@ -62,75 +119,62 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 | GET | event/ireport/:id | events/auth.js | Show item summary for an event |
 
 
-## Steps for Use
+## App Walk-through
 
-#### 1. Clone repo, but with a different name
+#### 1. Home page
+	* Log in reveals a hidden form
+	* Sign up takes user to sign-up page to create account
 
-```
-git clone <repo_link> <new_project_name>
-```
-#### 2. Create a new database for your project 
-```
-createdb <new_db_name>
-```
-#### 3. Install node modules from `package.json`
-```
- npm install
-```
-#### 4. Customize with project name
-* Title in layout.js
-* Logo in navbar
-* Description/repo link in package.json
-* Remove auth boilerplate readme and update readme for new project
+#### 2. Profile page
+	* Allows user to create new event and set destination for data in google sheets
+	* User can also navigate to existing events
 
-#### 5. Open `config.json` and change the following: 
-* Change database name to new_db_name from above
-* Set username/password for your local environment
-* Make sure the flavor of SQL is correct for your project
+#### 3. Event show page
+	* Divides activities into three phases: pre-event data entry and editing
+	* User can click links to one of seven destinations
 
-> NOTE: if changing from Postgres, need different node_modules
+#### 4. Items page
+	* User can click to show new item form, and add a new item
+	* View existing items associated with the event, and click to edit or delete
+	* Dropdown menu allows users to select a donor already in the system
 
-#### 6. Edit/check models and migrations for your project needs
+#### 5. Donor page
+	* User can click to show new donor form, and add a new donor
+	* View existing donors associated with the event, and click to edit
 
-For example, remove dob field or admin field; add username field, etc
+#### 6. Attendee page
+	* User can click to show new attendee form, and add a new attendee
+	* View existing attendees associated with the event, and click to edit
 
-Delete or add to both migration and model
+#### 7. Sell items
+	* Identify items by number and attendees by bid number to assign a winning bidder and bid amount to an item
+	* click Set Winner to update values in items table
 
-#### 7. Run the migrations
-```
-sequelize db:migrate
-``` 
+#### 8. Checkout index
+	* Show list of attendees to generate receipt for
 
-#### 8. Add a `.env` file with a SESSION_SECRET key for session implementation
+#### 9. Checkout show
+	* Generate receipt for an attendee showing item purchases and total cost
+	* Mark attendee as paid and show amount paid by cash and amount paid by credit card
 
-#### 9. Run your server and make sure everything works
-If nodemon is installed globally:
-```
-nodemon
-```
-Otherwise: 
-```
-node index.js
-```
-#### 10. Create a new repository for your new project
-* Create a new repository on your personal GitHub account
-* Delete the old remote to origin
-* Add new repo as the new remote location (can still be called origin)
-* git push
+#### 10. Item Report
+	* Generate report showing item name, number, value, bidder number, and amount sold for
+	* Click send report to send info to designated google sheet
 
-```
-git remote remove origin
-git remote add origin <new_repo_link?
-git add .
-git commit -m "new project repo"
-git push origin master
-```
+#### 10. Attendee Report
+	* Generate report showing attendee name, bid number, total cost, and paid/unpaid status
+	* Click send report to send info to designated google sheet
 
->NOTE: Do NOT make commits from the new project to the auth boilerplate
 
-## Next steps:
+## Problems:
+* Delete routes are needed for items, donors, and events
+* There is no edit function for events
+* Needs better control over sheets destination: ability to set spreadsheet and edit sheets ranges
+* Opening hidden forms currently requires two clicks instead of one, confusing users (and me)
+* Needs table for many-to-many items, like drinks and raffle tickets
+* Should generate pdf receipts
+* Lists of donors/items/attendees should be sorted by number and have a search function
 
-Add new models and migrations for your new app. 
 
 
 
