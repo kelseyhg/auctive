@@ -29,7 +29,7 @@ router.get('/edit/:id', loggedIn, function(req, res){
 		where: {id: req.params.id},
 	})
 	.then(function(foundAttendee){	
-		res.render('attendee/edit', {attendee: foundAttendee, eventId: req.params.name});
+		res.render('attendee/edit', {attendee: foundAttendee, eventId: req.params.id});
 	});
 });
 

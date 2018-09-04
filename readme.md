@@ -168,6 +168,7 @@ This app helps manage live auctions by storing attendee, item donor, and item in
 * Should generate pdf receipts
 * Lists of donors/items/attendees should be sorted by number and have a search function
 * Logo on receipt page is hard-coded, not changeable
+* No way for user to edit info or reset password
 
 
 
