@@ -14,8 +14,9 @@ var loggedIn = require('../middleware/loggedIn');
 router.get('/:id', loggedIn, function(req, res){
 	db.event.findOne({
 		where: {id: req.params.id},
-		include: [db.attendee]
+		include: [ db.attendee ], order: [ [ db.attendee, 'bidNumber', 'ASC' ] ]
 	})
+
 	.then(function(foundEvent){
 		res.render('attendee/index', {event: foundEvent});
 	});	
@@ -71,10 +72,10 @@ router.put('/:id', function(req, res, next){
    			nameSecondary: req.body.nameSecondary,
    			phone: req.body.phone,
    			email: req.body.email,
-   			ticket: req.body.ticket,
+   			ticketStatus: req.body.ticket,
    			table: req.body.table
    		}, 
-		{returning: true, where: {id: req.body.id} }		
+		{returning: true, where: {bidNumber: req.body.number} }		
  	)
  	.then(function(updatedAttendee){
 			req.flash('success', 'item updated');

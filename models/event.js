@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   event.associate = function(models) {
     models.event.belongsTo(models.user);
     models.event.hasMany(models.item);
+    models.event.hasMany(models.purchase);
     models.event.belongsToMany(models.donor, {through: "eventsDonors"});
     models.event.belongsToMany(models.attendee, {through: "eventsAttendees"});
   };

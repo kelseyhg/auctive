@@ -3,7 +3,7 @@
 
 	<h3><%=event.name%> Attendee Report</h3>
 
-	<% eventAttendeess = []; %>
+	<% eventAttendees = []; %>
 
 	<div class='card card-list'>
 		<table class="table">
@@ -20,7 +20,7 @@
 		<%#loops through attendees to display and fill array with info to send to Sheets%>
 		<%attendee.forEach(function(a){%>
 
-			<%var total = 0;%>
+			<%var total = a.totalPaid;%>
 			<%item.forEach(function(i){%>
 				<% if (i.attendeeId === a.id){%>
 			    <%total += i.soldPrice%>

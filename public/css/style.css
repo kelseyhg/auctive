@@ -26,8 +26,9 @@ body {
 		color: black;
 	}
 
-	#hiddenForm {
-		display: none;
+	.current-event {
+		background-color: #04898c;
+
 	}
 
 	.form-style {
@@ -65,6 +66,10 @@ body {
 		width: 500px;
 	}
 
+	.paid {
+		border: 2px solid #5cb85c;
+	}
+
 	.logo {
 		padding: 20px;
 	}
@@ -79,6 +84,11 @@ body {
 	.nav-link {
 		color: white;
 	}
+
+	.nav-link:hover {
+		color: #dcf7f7;
+	}
+
 	.events {
 		border-radius: 30px;
 		background-color: #10B2B2;

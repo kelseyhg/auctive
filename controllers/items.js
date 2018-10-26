@@ -15,7 +15,7 @@ router.get('/:id', loggedIn, function(req, res){
 	db.donor.findAll().then(function(allDonors){
 		db.event.findOne({
 			where: {id: req.params.id},
-			include: [db.item]
+			include: [ db.item ], order: [ [ db.item, 'number', 'ASC' ] ]
 		})
 		.then(function(foundEvent){	
 		res.render('item/index', {donors: allDonors, event: foundEvent});

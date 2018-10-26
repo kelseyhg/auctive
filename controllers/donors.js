@@ -22,7 +22,7 @@ router.get('/:id', loggedIn, function(req, res){
 	});	
 });
 
-// edit page dor a given donor
+// edit page for a given donor
 router.get('/edit/:id', loggedIn, function(req, res){
 		db.donor.findOne({
 			where: {id: req.params.id},

@@ -18,8 +18,8 @@ const SPREADSHEETID = "1mR02MKa3EyMYXl6JSLZcLluepdIsh1rskcbvaTu-4Wo";
 global.eventItems = [];
 global.eventAttendees = []; 
 global.currentEvent = ''; 
-global.itemRange = 'Items!A2-F90';
-global.attendeeRange = 'Attendees!A2-F50';
+global.itemRange = 'Items!A2-F120';
+global.attendeeRange = 'Attendees!A2-F80';
 
 // This will run on server start.
 // fs.readFile('credentials.json', (err, content) => {
@@ -32,6 +32,7 @@ global.attendeeRange = 'Attendees!A2-F50';
 var app = express();
 
 // set and use statements
+
 app.use(express.static(__dirname + '/public/'));
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
@@ -60,6 +61,9 @@ app.use('/item', require('./controllers/items'));
 app.use('/donor', require('./controllers/donors'));
 app.use('/attendee', require('./controllers/attendees'));
 app.use('/sell', require('./controllers/sales'));
+app.use('/purchase', require('./controllers/purchases'));
+app.use('/makepurchase', require('./controllers/makepurchases'));
+app.use('/dessert', require('./controllers/desserts'));
 
 // define routes
 app.get('/', function(req, res) {

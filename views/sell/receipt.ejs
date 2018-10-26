@@ -7,7 +7,20 @@
   <br>
   <%# loops through attendees for checkout%>
   <% event.attendees.forEach(function(a){%>
-  <div class='card list-card shadow-sm'>
+  <% if (a.paid){%>
+  <div class='card list-card shadow-sm paid'>
+
+    <div class='card-body'>
+      <h4 class='card-title'>
+        <a href='/sell/show/<%=a.id%>'>
+          <%=a.bidNumber%>: <%= a.name %>
+        </a>
+      </h4>
+      <a href='/sell/show/<%=a.id%>' class='btn btn-success'>checked out</a>
+    </div>
+  </div>
+    <% } else { %>
+   <div class='card list-card shadow-sm'>
 
     <div class='card-body'>
       <h4 class='card-title'>
@@ -18,6 +31,7 @@
       <a href='/sell/show/<%=a.id%>' class='btn btn-warning'>check out</a>
     </div>
   </div>
+<%}%>
   <%});%>
 
   <br><br>

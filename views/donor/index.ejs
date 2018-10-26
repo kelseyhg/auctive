@@ -8,7 +8,7 @@
 
 	<button class="btn-warning btn-lg" onclick="showForm()">New Donor Form</button>
 
-	<div id='hiddenForm' class='form-style'>
+	<div id='hiddenForm' class='form-style' style="display: none">
 	<form action='/donor' method="POST">
 		<div>
 				<input name='eventId' value='<%=event.id%>' hidden>

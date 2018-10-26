@@ -11,7 +11,7 @@ $(".edit-call").submit(function(e){
 		url: url,
 		data: data
 	}).done(function(data){
-		// console.log('success');
+		console.log('AJAX success');
 		 window.location = url;
 	}).fail(function(err){
 		console.log("Error", err);

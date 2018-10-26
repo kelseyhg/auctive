@@ -1,0 +1,57 @@
+<div class='container'>
+<br>
+<h2><%= event.name %> Purchasables</h2>
+
+<button class="shadow-sm btn btn-lg btn-warning" onclick="showForm()">New Purchasable Form</button>
+
+<div id="hiddenForm" class='shadow-sm form-style'>
+<form action='/purchase' method="POST">
+	<div>
+		<div hidden="true">
+			<input name='eventId' value='<%=event.id%>'>
+		</div>
+		<div class='form-row'>
+			<div class='inpt field col-md-6 form-group'>
+				<label for='number'>Item Name</label>
+				<input type='text' class="form-control" id='name' name='name'>
+			</div>
+			<div class='inpt field col-md-3 form-group'>
+				<label for='name'>Cost</label>
+				<input type='text' class="form-control" id='cost' name='cost'>
+			</div>
+		</div>
+		   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Create</button>
+	</div>
+</form>
+</div>
+
+
+<br> <br>
+
+<%# loop through items to make a list %>
+<% event.purchases.forEach(function(i){%>
+  <div class='card list-card shadow-sm'>
+ 
+    <div class='card-body'>
+    	<h4 class='card-title'>
+	    	 <%=i.name%>
+	    	 ($<%=i.cost%>)
+	   	</h4>
+
+	    <form action='/purchase/<%=event.id%>' class='delete-call list-btn'>
+	    	<input name='kitten' id='kitten' value='<%=i.id%>'hidden>
+	    	  <button type="submit" class="btn btn-warning list-btn">delete</button>
+	    </form>
+	</div>
+  </div>
+<%});%>
+
+<%#footer not in partials b/c I didn't want it on every page%>
+<br><br><footer> 
+	<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
+	<a href='#' class='btn btn-warning'>items</a>
+	<a href='/attendee/<%=event.id%>' class='btn btn-warning'>attendees</a>
+	<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning'>checkout</a>
+</footer>
+
+</div>

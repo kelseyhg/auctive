@@ -54,10 +54,14 @@ router.get("/:name", loggedIn, function(req, res) {
 });
 
 router.get('/areport/:id', loggedIn, function(req, res){
-	db.attendee.findAll().then(function(allAttendees){
+	db.attendee.findAll({
+		  order: [
+            ['bidNumber', 'ASC'],
+        ],
+		}).then(function(allAttendees){
 		db.event.findOne({
 		where: {id: req.params.id},
-		include: [db.item]	
+		include: [db.item, db.purchase]	
 	}).then(function(foundEvent){
 		db.item.findAll({
 			where: { eventId: req.params.id },
@@ -73,7 +77,7 @@ router.get('/ireport/:id', loggedIn, function(req, res){
 	db.attendee.findAll().then(function(allAttendees){
 		db.event.findOne({
 		where: {id: req.params.id},
-		include: [db.item]	
+		include: [ db.item ], order: [ [ db.item, 'number', 'ASC' ] ]	
 	}).then(function(foundEvent){
 		db.item.findAll({
 			where: { eventId: req.params.id },

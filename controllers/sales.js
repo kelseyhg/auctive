@@ -58,7 +58,7 @@ router.put('/:id', function(req, res, next){
 router.get('/receipt/:id', loggedIn, function(req, res){
 	db.event.findOne({
 		where: {id: req.params.id},
-		include: [db.item, db.attendee]
+		include: [ db.item, db.attendee ], order: [ [ db.attendee, 'bidNumber', 'ASC' ] ]
 	})
 	.then(function(foundEvent){
 		res.render('sell/receipt', {event: foundEvent});
@@ -70,7 +70,7 @@ router.get('/receipt/:id', loggedIn, function(req, res){
 router.get('/show/:id', loggedIn, function(req, res){
 	db.attendee.findOne({
 		where: {id: req.params.id},
-		include: [db.item]
+		include: [db.item, db.purchase]
 	})
 	.then(function(foundAttendee){
 		db.item.findAll().then(function(foundItems){
@@ -82,11 +82,13 @@ router.get('/show/:id', loggedIn, function(req, res){
 
 // submits info about bidder payment and payment completion
 router.put('/show/:id', function(req,res, next){
+	total = req.body.card + req.body.cash
 	db.attendee.update(
 	{
 		cardPayment: req.body.card,
 		cashPayment: req.body.cash,
-		paid: req.body.paid
+		paid: req.body.paid,
+		totalPaid: total
 	},
 	{ where: {id: req.body.id} }
 	).then(function(updatedItem){

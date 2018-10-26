@@ -1,0 +1,46 @@
+<div class='container'>
+
+	<br>
+
+	<h3>Dessert Dash Payments</h3>
+
+	<br>
+
+	<div class='col-lg-6 col-md-10 win-form'>
+
+		<form action='/dessert/<%=event.id%>' class='edit-call form-style shadow-sm'>
+				<div hidden="true">
+					<input name='id' value='<%=event.id%>'>
+				</div>
+					<div class='inpt field col-md-4 form-group'>
+						<label for='bidNumber'>Bid Number</label>
+						<input type='text' class="form-control" id='bidNumber' name='bidNumber'>
+					</div>
+					<h4 class='win-page'>PAID</h4>
+					<div class='inpt field col-md-4 form-group'>
+						<input type='text' class="form-control" id='payment' name='payment'>
+					</div>
+					<div class='inpt field col-md-6 form-group'>
+						<label for='bidNumber'>Payment Complete?</label>
+						<select name="dessertPaid" class="form-control">
+							<option value="False"> No</option>
+							<option value="True">Yes</option>
+						</select>
+					</div>
+						
+				   <button type="submit" class="shadow-sm btn btn-lg btn-warning">Set Dessert Dash $</button>
+		</form>
+
+	</div>
+
+	<br><br>
+	
+	<%#footer not in partials b/c I didn't want it on every page%>
+	<footer> 
+		<a href='/event/<%=event.name%>' class='btn btn-warning'>event page</a>
+		<a href='/item/<%=event.id%>' class='btn btn-warning'>items</a>
+		<a href='/attendee/<%=event.id%>' class='btn btn-warning'>attendees</a>
+		<a href='/sell/receipt/<%=event.id%>' class='btn btn-warning' disabled>checkout</a>
+	</footer>
+
+</div>

@@ -9,6 +9,7 @@
     <div class="col-lg-4 col-md-7">
 		<h3>Set-Up</h3>
 			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/item/<%=event.id%>" role="button">Items</a>
+			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/purchase/<%=event.id%>" role="button">Purchasables</a>
 
 			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/donor/<%=event.id%>" role="button">Donors</a>
 
@@ -18,7 +19,11 @@
 
 	<div class="col-lg-4 col-md-7">
 		<h3>Auction</h3>
-			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/sell/<%=event.id%>" role="button">Sell Items</a>
+			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/sell/<%=event.id%>" role="button">Set Winning Bidder</a>
+
+			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/makepurchase/<%=event.id%>" role="button">Sell Purchasables</a>
+
+			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/dessert/<%=event.id%>" role="button">Dessert Dash Payments</a>
 
 			<a class="btn btn-lg btn-warning event-btn" name='event.id' href="/sell/receipt/<%=event.id%>" role="button">Checkout</a>
 	</div>

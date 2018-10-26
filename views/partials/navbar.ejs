@@ -4,6 +4,11 @@
   <li class="nav-item">
     <a class="navbar-brand" href="/">Auctave</a>
   </li>
+    <% if(currentEvent) {%>
+    <li class="nav-item current-event">
+    <a class="nav-link" href='/event/<%=currentEvent.name%>'><%=currentEvent.name%></a>
+    </li>
+    <%}%>
      <% if(currentUser) {%>
   <li class="nav-item">
     <a class="nav-link" href="/profile"><%=currentUser.orgName%></a>

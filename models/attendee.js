@@ -10,11 +10,15 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     paid: DataTypes.BOOLEAN,
     cardPayment: DataTypes.INTEGER,
-    cashPayment: DataTypes.NUMERIC
+    cashPayment: DataTypes.NUMERIC,
+    dessertDash: DataTypes.FLOAT,
+    dessertPaid: DataTypes.BOOLEAN,
+    totalPaid: DataTypes.INTEGER
   }, {});
   attendee.associate = function(models) {
     models.attendee.belongsToMany(models.event, {through: "eventsAttendees"});
     models.attendee.hasMany(models.item);
+    models.attendee.belongsToMany(models.purchase, {through: "purchasesAttendees"})
 
   };
   return attendee;
